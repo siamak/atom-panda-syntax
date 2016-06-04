@@ -129,13 +129,14 @@ code {
 
 
 :local .github {
-	display: flex;
+	display: block;
+	/*display: flex;
 	align-items: center;
 	justify-content: center;
 	flex: 1;
-	min-height: 95vh;
-	min-width: 100vw;
+	min-width: 100vw;*/
 	/*display: block;*/
+	padding: 25vh 0;
 	background-color: $green;
 	color: $very-dark-gray;
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
@@ -146,10 +147,14 @@ code {
 		background-color: $red;
 		color: $white;
 	}
-	&-logo {
-		width: 3rem;
-		height: auto;
+	&_logo {
+		width: 6rem;
+		height: 7rem;
 		display: block;
 		margin: 0 auto;
+	}
+	h1 {
+		margin-bottom: 0;
+		font-size: 2em;
 	}
 }
