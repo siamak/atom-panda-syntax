@@ -1,0 +1,20 @@
+{
+  "name": "atom-panda-syntax",
+  "theme": "syntax",
+  "version": "0.1.0",
+  "description": "Panda syntax theme for Atom Material Dark, Atom Dark, One Dark and other Dark Syntax Theme.",
+  "keywords": [
+    "syntax",
+    "dark",
+    "atom",
+    "theme"
+  ],
+  "repository": "https://github.com/siamak/atom-panda-syntax",
+  "author": "Siamak Mokhtari <s.mokhtari75@gmail.com> (http://siamak.us)",
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/siamak/atom-panda-syntax",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  }
+}
