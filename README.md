@@ -13,7 +13,7 @@ Preferences:
 
 1. Go to `Setting > Install` and choose `Themes`
 2. Search for `atom-panda-syntax` and install it.
-3. Go to `Setting > Themes` and choose Panda as the syntax theme.
+3. Go to `Setting > Themes` and choose `Atom Panda` as the syntax theme.
 
 
 Atom Package Manager (APM):
