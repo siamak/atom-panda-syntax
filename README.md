@@ -29,13 +29,21 @@ Panda Syntax Theme Supported Packages `language-*` and optimized for many langua
 
 ## 📷 Screen Shots
 #### — JSX:
+
 ![JSX ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jsx.jpg)
+
 #### — SCSS:
+
 ![SCSS ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//scss.jpg)
+
 #### — Jade:
+
 ![Jade ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jade.jpg)
+
 #### — PHP:
+
 ![PHP ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//php.jpg)
+
 ---
 
 ---
@@ -54,4 +62,5 @@ If you would like to create a new Issue or PR, please do so in:
 3. Consume 10 to 18 kilos of raw bamboo per day
 4. Poop 10 to 18 kilos of processed bamboo per day.
 5. Panda sex is awkward. Naps are much more fun.
+
 > Picture & Contents from: https://dribbble.com/shots/2354579-Panda-Icon-Party.
