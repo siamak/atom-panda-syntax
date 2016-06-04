@@ -1,0 +1,18 @@
+$very-light-gray: #E6E6E6;
+$light-gray: #757575;
+$gray: #373b41;
+$dark-gray: lighten(#2B2C2F, 2);
+$very-dark-gray: #2B2C2F;
+$white: #f3f3f3;
+$light-midnight: #676B79;
+
+$blue: #7DC1FF;
+$purple: #B084EB;
+
+$green: #35FFDC;
+$red: #FF2C6D;
+$orange: #ffb86c;
+$light-orange: lighten($orange, 7);
+
+$pink: #FF90D0;
+$pink-light: #BFB8BC;

@@ -1,0 +1,155 @@
+@import 'assets/variables.css';
+
+body {
+	background: white;
+	font-family: Fira Mono, sans-serif;
+	color: $very-light-gray;
+	font-size: 15px;
+	margin: 0;
+}
+*::selection {
+	background-color: $orange;
+	color: #fefefe;
+}
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+*:focus {
+	outline: none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+main {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	@media screen and (max-width: 40rem) {
+		min-height: auto;
+	}
+}
+:local .logoHatchback {
+	width: 9.5rem;
+	max-width: 100%;
+	display: block;
+	margin: 2.5rem auto 0.5rem;
+	height: auto;
+}
+.title {
+	color: $very-dark-gray;
+	text-align: center;
+	font-size: 1.85em !important;
+	padding: 0;
+	margin-top: 0em;
+	word-wrap: break-word;
+	a {
+		display: block;
+		font-size: 0.5em;
+		margin-top: 1em;
+		color: $red;
+		&:hover {
+			color: $orange;
+		}
+	}
+	i {
+		display: block;
+		margin-top: .15em;
+		font-size: 0.5em;
+		color: $light-midnight;
+	}
+}
+
+:local .screenShots {
+	position: relative;
+	display: block;
+	width: 100%;
+	height: 83vh;
+	min-height: 10rem;
+	@media screen and (max-width: 40rem) {
+		height: auto;
+	}
+	.view {
+		/*position: absolute;*/
+		display: block;
+		/*left: 50%;*/
+		/*bottom: 0;*/
+		max-height: 100%;
+		max-width: 100%;
+		transition: all .3s cubic-bezier(.55,0,.1,1);
+		margin: 0 auto;
+		margin-bottom: 2em;
+
+		z-index: 3;
+		/*bottom: -40px;*/
+		transform: translateY(0);
+		/*box-shadow: 0 30px 24px rgba(0,0,0,.12),
+					0 -5px 27px -10px rgba(0,0,0,.28);*/
+		&:hover {
+			transform: translateY(-1rem);
+		}
+	}
+}
+
+code {
+	padding: 0 5px;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	margin: 0;
+	font-size: 85%;
+	color: $very-dark-gray;
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 3px;
+}
+
+.wrapper {
+	width: 50rem;
+	padding: 0 1em;
+	margin: 0 auto;
+	max-width: 100%;
+}
+:local .leading {
+	display: block;
+	margin: 0;
+	margin-top: 2.5vh;
+	text-align: center;
+	padding: 5rem 0 3rem;
+	color: $light-midnight;
+	background-color: #f1f1f1;
+	.title {
+		margin: 0;
+		margin-bottom: 1em;
+		font-size: 2.125em;
+		letter-spacing: 15px;
+	}
+}
+
+
+:local .github {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	min-height: 95vh;
+	min-width: 100vw;
+	/*display: block;*/
+	background-color: $green;
+	color: $very-dark-gray;
+	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
+	text-align: center;
+	margin-bottom: 0;
+	transition: all 0.5s ease-in-out;
+	&:hover{
+		background-color: $red;
+		color: $white;
+	}
+	&-logo {
+		width: 3rem;
+		height: auto;
+		display: block;
+		margin: 0 auto;
+	}
+}
