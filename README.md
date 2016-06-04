@@ -1,9 +1,9 @@
-![Panda Logo](panda.jpg)
+![Panda Logo](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/panda.jpg)
 
 A _Superminimal_, _dark_ Syntax Theme. This is the latest version of the **Panda Syntax** theme. It's a _dark_ syntax theme crafted especially for [Atom](http://atom.io), with subtle colors that are meant to be easy on the eyes.
 
 ---
-![Main ScreenShot](./screenshots/main.jpg)
+![Main ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/main.jpg)
 > The font in the screenshot is `Operator Mono`. From $199, exclusively at H&Co. http://www.typography.com/blog/introducing-operator
 
 ---
@@ -29,13 +29,13 @@ Panda Syntax Theme Supported Packages `language-*` and optimized for many langua
 
 ## 📷 Screen Shots
 #### — JSX:
-![JSX ScreenShot](./screenshots/jsx.jpg)
+![JSX ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jsx.jpg)
 #### — SCSS:
-![SCSS ScreenShot](./screenshots/scss.jpg)
+![SCSS ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//scss.jpg)
 #### — Jade:
-![Jade ScreenShot](./screenshots/jade.jpg)
+![Jade ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jade.jpg)
 #### — PHP:
-![PHP ScreenShot](./screenshots/php.jpg)
+![PHP ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//php.jpg)
 ---
 
 ---
@@ -47,7 +47,8 @@ If you would like to create a new Issue or PR, please do so in:
 * This repo if it's about color changes, like in `colors.less` or `syntax-variables.less`.
 
 ## 🐼 About Pandas
-![Pandas ScreenShot](./screenshots/pandas.png)
+![Pandas ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//pandas.png)
+
 1. Sleep 12-14 hours per day
 2. Eat 12-14 hours per day
 3. Consume 10 to 18 kilos of raw bamboo per day
