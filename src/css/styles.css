@@ -136,22 +136,27 @@ code {
 	flex: 1;
 	min-width: 100vw;*/
 	/*display: block;*/
-	padding: 25vh 0;
+	padding: 35vh 0;
 	background-color: $green;
 	color: $very-dark-gray;
 	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.125);
 	text-align: center;
 	margin-bottom: 0;
-	transition: all 0.5s ease-in-out;
+	transition: all 0.3s ease-in-out;
 	&:hover{
 		background-color: $red;
 		color: $white;
+		.github_logo {
+			fill: $white;
+		}
 	}
 	&_logo {
 		width: 6rem;
 		height: 7rem;
 		display: block;
 		margin: 0 auto;
+		transition: all 0.35s ease-in-out;
+		fill: $very-dark-gray;
 	}
 	h1 {
 		margin-bottom: 0;
