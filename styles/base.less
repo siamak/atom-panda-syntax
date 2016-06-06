@@ -1,13 +1,18 @@
 @import "syntax-variables";
+@import "mixins";
+
 :host,
 atom-text-editor {
-	background-color: @syntax-background-color;
-	.isRetina-2x({
-		background-color: @syntax-background-color_retina;
-	});
+	background-color: @syntax-background-color_retina;
+	// .isRetina-2x({
+	// 	background-color: @syntax-background-color_retina;
+	// });
 	color: @syntax-text-color;
 	.wrap-guide {
-		background-color: @syntax-wrap-guide-color;
+		background-color: @syntax-wrap-guide-color_retina;
+		// .isRetina-2x({
+		// 	background-color: @syntax-wrap-guide-color_retina;
+		// });
 	}
 	.indent-guide {
 		color: @syntax-indent-guide-color;
@@ -60,6 +65,11 @@ atom-text-editor .search-results .marker.current-result .region {
 	color: @pink-light;
 	&.control {
 		color: @pink-light;
+		&.html {
+			&.custom {
+				color: @orange;
+			}
+		}
 		&.scss{
 			&.import {
 				color: @pink-light !important;
@@ -79,6 +89,9 @@ atom-text-editor .search-results .marker.current-result .region {
 	}
 	&.operator {
 		color: @syntax-text-color;
+	}
+	&.other.important {
+		color: lighten(@red, 6%);
 	}
 	&.other.special-method {
 		color: @blue;
@@ -172,15 +185,15 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: @white;
 	}
 	&.function {
-		color: @cyan;
+		color: @blue-light;
 		&.any-method {
-			color: @cyan;
+			color: @blue-light;
 		}
 	}
 }
 .entity {
 	&.name.function {
-		color: @cyan;
+		color: @blue-light;
 	}
 	&.name.type {
 		color: @light-orange;
