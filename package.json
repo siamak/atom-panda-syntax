@@ -1,7 +1,7 @@
 {
   "name": "atom-panda-syntax",
   "theme": "syntax",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Panda syntax theme for Atom Material Dark, Atom Dark, One Dark and other Dark Theme.",
   "keywords": [
     "syntax",
