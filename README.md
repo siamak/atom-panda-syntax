@@ -3,7 +3,7 @@
 A _Superminimal_, _dark_ Syntax Theme. This is the latest version of the **Panda Syntax** theme. It's a _dark_ syntax theme crafted especially for [Atom](http://atom.io), with subtle colors that are meant to be easy on the eyes.
 
 ---
-![Main ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshotsmain.jpg)
+![Main ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/main.jpg)
 > The font in the screenshot is `Operator Mono`. From $199, exclusively at H&Co. http://www.typography.com/blog/introducing-operator
 
 ---
