@@ -3,7 +3,7 @@
 A _Superminimal_, _dark_ Syntax Theme. This is the latest version of the **Panda Syntax** theme. It's a _dark_ syntax theme crafted especially for [Atom](http://atom.io), with subtle colors that are meant to be easy on the eyes.
 
 ---
-![Main ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/main.jpg)
+![Main ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshotsmain.jpg)
 > The font in the screenshot is `Operator Mono`. From $199, exclusively at H&Co. http://www.typography.com/blog/introducing-operator
 
 ---
@@ -30,19 +30,19 @@ Panda Syntax Theme Supported Packages `language-*` and optimized for many langua
 ## 📷 Screen Shots
 #### — JSX:
 
-![JSX ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jsx.jpg)
+![JSX ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/jsx.jpg)
 
 #### — SCSS:
 
-![SCSS ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//scss.jpg)
+![SCSS ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/scss.jpg)
 
-#### — Jade:
+#### — HTML:
 
-![Jade ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//jade.jpg)
+![HTML ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/html.jpg)
 
 #### — PHP:
 
-![PHP ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//php.jpg)
+![PHP ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/php.jpg)
 
 ---
 
@@ -55,7 +55,7 @@ If you would like to create a new Issue or PR, please do so in:
 * This repo if it's about color changes, like in `colors.less` or `syntax-variables.less`.
 
 ## 🐼 About Pandas
-![Pandas ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots//pandas.png)
+![Pandas ScreenShot](https://raw.githubusercontent.com/siamak/atom-panda-syntax/master/screenshots/pandas.png)
 
 1. Sleep 12-14 hours per day
 2. Eat 12-14 hours per day
