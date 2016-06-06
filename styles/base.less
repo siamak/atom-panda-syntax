@@ -2,6 +2,9 @@
 :host,
 atom-text-editor {
 	background-color: @syntax-background-color;
+	.isRetina-2x({
+		background-color: @syntax-background-color_retina;
+	});
 	color: @syntax-text-color;
 	.wrap-guide {
 		background-color: @syntax-wrap-guide-color;
@@ -169,15 +172,15 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: @white;
 	}
 	&.function {
-		color: @blue;
+		color: @cyan;
 		&.any-method {
-			color: @blue;
+			color: @cyan;
 		}
 	}
 }
 .entity {
 	&.name.function {
-		color: @blue;
+		color: @cyan;
 	}
 	&.name.type {
 		color: @light-orange;
