@@ -8,7 +8,7 @@ class PandaApp extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			shots: ['jsx', 'jade', 'php', 'main', 'scss']
+			shots: ['jsx', 'html', 'php', 'main', 'scss']
 		};
 	}
 	render () {
