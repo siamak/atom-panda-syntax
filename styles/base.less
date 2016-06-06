@@ -56,9 +56,9 @@ atom-text-editor .search-results .marker.current-result .region {
 	font-style: italic;
 }
 .keyword {
-	color: @pink-light;
+	color: @pink;
 	&.control {
-		color: @pink-light;
+		color: @pink;
 		&.html {
 			&.custom {
 				color: @orange;
@@ -68,7 +68,7 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.less,
 		&.css{
 			&.import {
-				color: @pink-light !important;
+				color: @light-pink !important;
 			}
 			&.at-rule {
 				color: @green !important;
@@ -82,9 +82,17 @@ atom-text-editor .search-results .marker.current-result .region {
 				color: @green;
 			}
 		}
+		&.new {
+			color: @pink;
+			font-style: italic;
+		}
 	}
 	&.operator {
 		color: @syntax-text-color;
+		&.new {
+			color: @pink;
+			font-style: italic;
+		}
 	}
 	&.other.important {
 		color: lighten(@red, 6%);
@@ -101,6 +109,19 @@ atom-text-editor .search-results .marker.current-result .region {
 }
 .storage {
 	color: @orange;
+	&.java {
+		&.type {
+			font-style: italic;
+		}
+		&.modifier {
+			&.import {
+				color: @very-light-gray;
+			}
+			&.package {
+				color: @blue;
+			}
+		}
+	}
 }
 .constant {
 	color: @orange;
@@ -121,12 +142,13 @@ atom-text-editor .search-results .marker.current-result .region {
 	}
 }
 .variable {
-	color: @pink;
+	color: @light-pink;
 	&.interpolation {
 		color: darken(@pink, 10%);
 	}
 	&.parameter.function {
 		color: @syntax-text-color;
+		font-style: italic;
 	}
 }
 .invalid.illegal {
@@ -231,6 +253,9 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.separator {
 		background-color: @gray;
 		color: @syntax-text-color;
+	}
+	&.method-call.java {
+		color: @very-light-gray;
 	}
 }
 .none {
