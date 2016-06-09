@@ -71,9 +71,9 @@ atom-text-editor .search-results .marker.current-result .region {
 				color: @light-pink !important;
 			}
 			&.at-rule {
-				color: @green !important;
+				color: @purple !important;
 				.keyword {
-					color: @green;
+					color: @purple;
 				}
 			}
 		}
@@ -150,6 +150,13 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: @syntax-text-color;
 		font-style: italic;
 	}
+	&.other {
+		&.js {
+			&.readwrite {
+				color: @syntax-text-color;
+			}
+		}
+	}
 }
 .invalid.illegal {
 	border-bottom: 1px dashed fade(@red, 50%);
@@ -160,6 +167,11 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: @blue;
 		.source.ruby.embedded {
 			color: @orange;
+		}
+	}
+	&.unquoted {
+		&.js {
+			color: @light-orange;
 		}
 	}
 	&.other.link {
@@ -189,6 +201,11 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.italic {
 			color: @pink;
 			font-style: italic;
+		}
+		&.tag {
+			&.jsx {
+				color: @orange;
+			}
 		}
 	}
 	&.section.embedded {
