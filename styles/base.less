@@ -14,6 +14,9 @@ atom-text-editor {
 	.invisible-character {
 		color: @syntax-invisible-character-color;
 	}
+	.line.cursor-line{
+		background-color: rgba(99, 123, 156, 0.07);
+	}
 	.gutter {
 		background-color: @syntax-gutter-background-color;
 		color: @syntax-gutter-text-color;
@@ -158,9 +161,16 @@ atom-text-editor .search-results .marker.current-result .region {
 		}
 	}
 }
-.invalid.illegal {
-	border-bottom: 1px dashed fade(@red, 50%);
+.invalid {
+	&.illegal {
+		border-bottom: 1px dashed fade(@red, 50%);
+	}
+	&.deprecated {
+		border-bottom: 1px dashed fade(@purple, 12.5%);
+	}
 }
+
+
 .string {
 	color: @green;
 	&.regexp {
@@ -172,6 +182,11 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.unquoted {
 		&.js {
 			color: @light-orange;
+		}
+	}
+	& .punctuation {
+		.section.embedded .source {
+			color: @green;
 		}
 	}
 	&.other.link {
@@ -193,6 +208,9 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.heading,
 		&.identity {
 			color: @blue;
+		}
+		&.string{
+			color: @green;
 		}
 		&.bold {
 			color: @light-orange;
