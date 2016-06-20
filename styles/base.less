@@ -157,13 +157,16 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: darken(@pink, 10%);
 	}
 	&.parameter.function {
-		color: @syntax-text-color;
+		color: darken(@very-light-gray, 12%);
 		font-style: italic;
 	}
 	&.other {
 		&.js {
 			&.readwrite {
 				color: @syntax-text-color;
+			}
+			&.property {
+				color: @very-light-gray;
 			}
 		}
 	}
@@ -173,7 +176,7 @@ atom-text-editor .search-results .marker.current-result .region {
 		border-bottom: 1px dashed fade(@red, 50%);
 	}
 	&.deprecated {
-		border-bottom: 1px dashed fade(@purple, 12.5%);
+		border-bottom: 1px dashed fade(@purple, 50%);
 	}
 }
 
