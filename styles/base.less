@@ -96,6 +96,9 @@ atom-text-editor .search-results .marker.current-result .region {
 			color: @pink;
 			font-style: italic;
 		}
+		&.accessor {
+			color: @lighter-gray;
+		}
 	}
 	&.other.important {
 		color: lighten(@red, 6%);
@@ -157,7 +160,7 @@ atom-text-editor .search-results .marker.current-result .region {
 		color: darken(@pink, 10%);
 	}
 	&.parameter.function {
-		color: darken(@very-light-gray, 12%);
+		color: @lighter-gray;
 		font-style: italic;
 	}
 	&.other {
@@ -176,7 +179,7 @@ atom-text-editor .search-results .marker.current-result .region {
 		border-bottom: 1px dashed fade(@red, 50%);
 	}
 	&.deprecated {
-		border-bottom: 1px dashed fade(@purple, 50%);
+		background-color: fade(#FF2C6D, 62%);
 	}
 }
 
@@ -246,6 +249,13 @@ atom-text-editor .search-results .marker.current-result .region {
 	}
 	&.type {
 		color: @white;
+		&.object {
+			&.module {
+				&.js {
+					color: @purple
+				}
+			}
+		}
 	}
 	&.function {
 		color: @blue-light;
