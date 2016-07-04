@@ -8,7 +8,7 @@ class PandaApp extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			shots: ['jsx', 'html', 'php', 'main', 'scss']
+			shots: ['jsx', 'html', 'php', 'main', 'scss', 'st_css', 'st_html', 'st_js', 'st_jsx']
 		};
 	}
 	render () {
@@ -20,21 +20,21 @@ class PandaApp extends Component {
 					</a>
 					<h1 className="title">
 						Panda Syntax Theme
-						<i>`A Superminimal, dark Syntax Theme for atom.`</i>
-						<a href="https://github.com/siamak/atom-panda-syntax">github.com/siamak/atom-panda-syntax</a>
+						<i>`A Superminimal, dark Syntax Theme for <a href='https://github.com/siamak/atom-panda-syntax' target='_blank'>Atom</a>, <a href='https://github.com/siamak/panda-syntax-sublime' target='_blank'>Sublime Text</a>, <a href='https://github.com/PandaTheme/panda-syntax-iterm' target='_blank'>iTerm 2</a>, <a href='https://github.com/PandaTheme/pycharm-panda-syntax' target='_blank'>Pycharm</a>.`</i>
+						<a className={styles.hero_link} href="https://github.com/PandaTheme">github.com/PandaTheme</a>
 					</h1>
 					<ScreenShots list={this.state.shots}/>
 				</main>
 				<section className={styles.leading}>
 					<div className="wrapper">
 						<h2 className={styles.title}>Installation</h2>
-						<p>
+						{/*<p>
 							Go to <code>Setting > Install</code> and choose <code>Themes</code>
 							<br/>
 							Search for <code>atom-panda-syntax</code> and install it.
 							<br/>
 							Go to <code>Setting > Themes</code> and choose <code>Atom Panda</code> as the syntax theme.
-						</p>
+						</p>*/}
 						<a href="http://atom.io/themes/atom-panda-syntax" target="_blank" className="install-atom">
 							<svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="atom" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" width="512px" height="512px">
 								<path d="M31.7339859,25.5925503c-3.3085938,0-6,2.6914005-6,6s2.6914062,5.9999981,6,5.9999981   c3.3086014,0,6-2.6913986,6-5.9999981S35.0425873,25.5925503,31.7339859,25.5925503z M31.7339859,35.5925484   c-2.205595,0-4-1.7944984-4-3.9999981c0-2.2056007,1.794405-4,4-4c2.2055016,0,4,1.7943993,4,4   C35.7339859,33.7980499,33.9394875,35.5925484,31.7339859,35.5925484z" fill="#584b4f"/>
@@ -42,10 +42,16 @@ class PandaApp extends Component {
 							</svg>
 							— INSTALL ON ATOM —
 						</a>
+						<a href="https://packagecontrol.io/packages/Panda%20Syntax%20Sublime" target="_blank" className="install-sublime">
+							<svg width="245px" height="381px" id="sublime" viewBox="134 66 245 381" version="1.1" xmlns="http://www.w3.org/2000/svg">
+								<path d="M135.2,446.005537 C314.6,453.205537 378.8,391.405537 378.8,332.605537 C378.8,243.805537 205.4,219.205537 205.4,163.405537 C205.4,136.405537 235.4,120.205537 356,128.605537 L352.4,66.8055373 C197.6,58.4055373 134,117.205537 134,173.005537 C134,258.805537 307.4,280.405537 307.4,341.005537 C307.4,372.205537 261.8,393.805537 135.2,384.205537 L135.2,446.005537 Z" id="S" stroke="none" fill="#E6E6E6"></path>
+							</svg>
+							— INSTALL ON SUBLIME TEXT —
+						</a>
 					</div>
 				</section>
 
-				<a href="https://github.com/siamak/atom-panda-syntax" className={styles.github}>
+				<a href="https://github.com/PandaTheme" className={styles.github}>
 					<svg className={styles.github_logo} viewBox="0 0 35.318 35.318" xmlns="http://www.w3.org/2000/svg">
 							<path d="M23.71,34.689c-0.172,0.062-0.345,0.137-0.522,0.168c-0.678,0.121-1.112-0.229-1.116-0.922
 		c-0.009-1.287-0.009-2.572,0.012-3.859c0.022-1.48-0.012-2.941-1.139-4.162c0.67-0.12,1.266-0.204,1.849-0.338
@@ -68,7 +74,7 @@ class PandaApp extends Component {
 		C13.061,29.004,12.944,28.836,12.87,28.854z M8.512,28.261c0.082,0.155,0.209,0.289,0.381,0.508
 		c0.115-0.188,0.24-0.332,0.218-0.361c-0.109-0.143-0.257-0.26-0.403-0.367C8.698,28.033,8.495,28.227,8.512,28.261z"/>
 					</svg>
-					<h1>Contributing on Panda.</h1>
+					<h1>PandaTheme on github.</h1>
 				</a>
 			</section>
 		);

@@ -47,12 +47,29 @@ main {
 	margin-top: 0em;
 	word-wrap: break-word;
 	a {
-		display: block;
-		font-size: 0.5em;
-		margin-top: 1em;
-		color: $red;
+		&:nth-child(1) {
+			color: mix(#FFB86C, #EC2864, 25%);
+		}
+		&:nth-child(2) {
+			color: mix(#FFB86C, #EC2864, 50%);
+		}
+		&:nth-child(3) {
+			color: mix(#FFB86C, #EC2864, 75%);
+		}
+		&:nth-child(4) {
+			color: mix(#FFB86C, #EC2864, 100%);
+		}
 		&:hover {
-			color: $orange;
+			color: $pink;
+		}
+	}
+	:local .hero_link {
+		display: block;
+		font-size: 0.65em;
+		margin-top: 1.5em;
+		color: $red !important;
+		&:hover {
+			color: $orange !important;
 		}
 	}
 	i {
@@ -144,7 +161,7 @@ code {
 	margin-bottom: 0;
 	transition: all 0.3s ease-in-out;
 	&:hover{
-		background-color: $red;
+		background-color: $light-midnight;
 		color: $white;
 		.github_logo {
 			fill: $white;
@@ -181,14 +198,43 @@ code {
 	&:hover {
 		background-color: #f9c186;
 	}
-	#atom{
+	#atom {
 		display: block;
 		margin: 0 auto;
 		width: 4rem;
 		height: 4rem;
 		margin-bottom: 1em;
 		animation: bounce ease-in-out infinite;
-		animation-duration: 1.5s;
+		animation-duration: 2s;
+		animation-fill-mode: backwards;
+		will-change: transform;
+	}
+}
+.install-sublime {
+	display: table;
+	margin: 2em auto;
+	width: 50rem;
+	max-width: 95%;
+	text-align: center;
+	padding: 2em;
+	border-radius: 5px;
+	font-size: 1.5em;
+	background-color: $red;
+	color: #E6E6E6;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+	transition: 0.2s all;
+	&:hover {
+		background-color: #f26e97;
+	}
+	#sublime {
+		display: block;
+		margin: 0 auto;
+		width: 4rem;
+		height: 4rem;
+		margin-bottom: 1em;
+		animation: bounce ease-in-out infinite;
+		animation-duration: 2s;
+		animation-delay: 1s;
 		animation-fill-mode: backwards;
 		will-change: transform;
 	}
