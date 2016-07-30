@@ -20,7 +20,8 @@ class PandaApp extends Component {
 					</a>
 					<h1 className="title">
 						Panda Syntax Theme
-						<i>`A Superminimal, dark Syntax Theme for <a href='https://github.com/siamak/atom-panda-syntax' target='_blank'>Atom</a>, <a href='https://github.com/siamak/panda-syntax-sublime' target='_blank'>Sublime Text</a>, <a href='https://github.com/PandaTheme/panda-syntax-iterm' target='_blank'>iTerm 2</a>, <a href='https://github.com/PandaTheme/pycharm-panda-syntax' target='_blank'>Pycharm</a>.`</i>
+						<i>`A Superminimal, dark Syntax Theme for <a href='https://github.com/siamak/atom-panda-syntax' target='_blank'>Atom</a>, <a href='https://github.com/siamak/panda-syntax-sublime' target='_blank'>Sublime Text</a>, <a href='https://github.com/tinkertrain/panda-syntax-vscode' target='_blank'>Visual Studio Code</a>, <a href='https://github.com/PandaTheme/panda-syntax-iterm' target='_blank'>iTerm 2</a>, <a href='https://github.com/PandaTheme/pycharm-panda-syntax' target='_blank'>Pycharm</a>.`
+						</i>
 						<a className={styles.hero_link} href="https://github.com/PandaTheme">github.com/PandaTheme</a>
 					</h1>
 					<ScreenShots list={this.state.shots}/>
@@ -47,6 +48,12 @@ class PandaApp extends Component {
 								<path d="M135.2,446.005537 C314.6,453.205537 378.8,391.405537 378.8,332.605537 C378.8,243.805537 205.4,219.205537 205.4,163.405537 C205.4,136.405537 235.4,120.205537 356,128.605537 L352.4,66.8055373 C197.6,58.4055373 134,117.205537 134,173.005537 C134,258.805537 307.4,280.405537 307.4,341.005537 C307.4,372.205537 261.8,393.805537 135.2,384.205537 L135.2,446.005537 Z" id="S" stroke="none" fill="#E6E6E6"></path>
 							</svg>
 							— INSTALL ON SUBLIME TEXT —
+						</a>
+						<a href="https://marketplace.visualstudio.com/items?itemName=tinkertrain.theme-panda" target="_blank" className="install-vscode">
+							<svg xmlns="http://www.w3.org/2000/svg" id="vscode" width="245px" height="381px">
+								<path fill="#fff" d="M21 0l-11 12-7.333-5.666-2.667 1.682v13.984l2.667 1.666 7.333-5.666 11 11 7-3v-22.333l-7-3.667zm-18 19v-9l4 5-4 4zm11-4l7-6v12l-7-6z"/>
+							</svg>
+							— INSTALL ON VSCode —
 						</a>
 					</div>
 				</section>
