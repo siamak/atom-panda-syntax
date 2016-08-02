@@ -126,7 +126,7 @@ code {
 }
 
 .wrapper {
-	width: 50rem;
+	width: 60rem;
 	padding: 0 1em;
 	margin: 0 auto;
 	max-width: 100%;
@@ -185,7 +185,30 @@ code {
 }
 
 
-.install-atom {
+:local .ports {
+	display: block;
+	a {
+		display: inline-block;
+		vertical-align: top;
+		width: 25%;
+		padding: 0.5rem;
+	}
+	:local .box {
+		padding: 1rem;
+		background-color: #fcfcfc;
+		box-shadow: 0 2px 4px rgba(0,0,0,.11);
+		&:hover {
+			background-color: $light-midnight;
+		}
+		:local .icon {
+			width: 6rem;
+			height: 6rem;
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+/*.install-atom {
 	display: table;
 	margin: 2em auto;
 	width: 50rem;
@@ -270,7 +293,7 @@ code {
 		animation-fill-mode: backwards;
 		will-change: transform;
 	}
-}
+}*/
 
 @keyframes bounce {
 	0%, 20%, 50%, 80%, 100% {
