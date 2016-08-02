@@ -4,6 +4,7 @@ var path              = require('path'),
 	autoprefixer      = require('autoprefixer'),
 	precss            = require('precss'),
 	cssnano           = require('cssnano'),
+	mix               = require('postcss-color-mix'),
 	uglifyJsPlugin    = webpack.optimize.UglifyJsPlugin;
 
 
@@ -40,6 +41,7 @@ module.exports = {
 		],
 	},
 	postcss: [
+		mix(),
 		precss(),
 		autoprefixer({ browsers: ['last 10 versions'] }),
 		cssnano()

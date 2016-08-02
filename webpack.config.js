@@ -4,6 +4,7 @@ var path              = require('path'),
 	autoprefixer      = require('autoprefixer'),
 	precss            = require('precss'),
 	cssnano           = require('cssnano'),
+	mix               = require('postcss-color-mix'),
 	OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 var configServe = {
@@ -54,6 +55,7 @@ module.exports = {
 		],
 	},
 	postcss: [
+		mix(),
 		precss(),
 		autoprefixer({ browsers: ['last 10 versions'] }),
 		cssnano()
