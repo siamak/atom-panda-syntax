@@ -2,9 +2,10 @@
 
 body {
 	background: white;
-	font-family: Fira Mono, sans-serif;
+	font-family: Roboto Mono, sans-serif;
 	color: $very-light-gray;
 	font-size: 15px;
+	font-weight: 400;
 	margin: 0;
 }
 *::selection {
@@ -44,6 +45,7 @@ main {
 	text-align: center;
 	font-size: 1.85em !important;
 	padding: 0;
+	font-weight: 700;
 	margin-top: 0em;
 	word-wrap: break-word;
 	a {
@@ -69,17 +71,25 @@ main {
 	:local .hero_link {
 		display: block;
 		font-size: 0.65em;
-		margin-top: 1.5em;
-		color: $red !important;
+		margin-top: 1em;
+		color: $pink !important;
 		&:hover {
 			color: $orange !important;
 		}
 	}
 	i {
 		display: block;
-		margin-top: .15em;
+		margin-top: 1.5em;
 		font-size: 0.5em;
 		color: $light-midnight;
+	}
+	u {
+		display: block;
+		margin-top: 0.75em;
+		font-size: 1.2rem;
+		background: -webkit-gradient(linear, left top, right top, from($red), to($orange));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 }
 
@@ -143,7 +153,8 @@ code {
 		margin: 0;
 		margin-bottom: 1em;
 		font-size: 2.125em;
-		letter-spacing: 15px;
+		letter-spacing: 2px;
+		font-weight: 700;
 	}
 }
 
@@ -181,6 +192,7 @@ code {
 	h1 {
 		margin-bottom: 0;
 		font-size: 2em;
+		font-weight: 700;
 	}
 }
 
@@ -196,15 +208,25 @@ code {
 	:local .box {
 		padding: 1rem;
 		background-color: #fcfcfc;
-		box-shadow: 0 2px 4px rgba(0,0,0,.11);
+		border-radius: 2px;
+		box-shadow: 0 2px 4px rgba(0,0,0,.15);
+		transition: 0.2s ease-in-out;
 		&:hover {
-			background-color: $light-midnight;
+			transform: translateY(3px);
+			box-shadow: 0 1px 6px rgba(0,0,0,.1),
+						0 4px 16px rgba(0, 0, 0, 0.1);
+			/*background-color: #f3f3f3;*/
 		}
 		:local .icon {
 			width: 6rem;
 			height: 6rem;
 			display: block;
 			margin: 0 auto;
+		}
+		h4 {
+			margin-bottom: 0.25em;
+			font-size: 1rem;
+			font-weight: 400;
 		}
 	}
 }
