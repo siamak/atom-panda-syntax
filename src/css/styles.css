@@ -204,6 +204,15 @@ code {
 		vertical-align: top;
 		width: 25%;
 		padding: 0.5rem;
+		@media only screen and (max-width: 48rem) {
+			width: 33.3%;
+		}
+		@media only screen and (max-width: 30rem) {
+			width: 50%;
+		}
+		@media only screen and (max-width: 22rem) {
+			width: 100%;
+		}
 	}
 	:local .box {
 		padding: 1rem;
