@@ -22,7 +22,7 @@ class PandaApp extends Component {
 			},
 			{
 				title: "Atom",
-				href: "atom.io/themes/atom-panda-syntax",
+				href: "http://atom.io/themes/atom-panda-syntax",
 				src: "atom.svg"
 			},
 			{
