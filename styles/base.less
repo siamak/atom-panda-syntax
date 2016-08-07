@@ -1,4 +1,6 @@
 @import "syntax-variables";
+@import "mixins";
+
 :host,
 atom-text-editor {
 	background-color: @syntax-background-color;
@@ -11,6 +13,9 @@ atom-text-editor {
 	}
 	.invisible-character {
 		color: @syntax-invisible-character-color;
+	}
+	.line.cursor-line{
+		background-color: rgba(99, 123, 156, 0.07);
 	}
 	.gutter {
 		background-color: @syntax-gutter-background-color;
@@ -54,17 +59,24 @@ atom-text-editor .search-results .marker.current-result .region {
 	font-style: italic;
 }
 .keyword {
-	color: @pink-light;
+	color: @pink;
 	&.control {
-		color: @pink-light;
-		&.scss{
+		color: @pink;
+		&.html {
+			&.custom {
+				color: @orange;
+			}
+		}
+		&.scss,
+		&.less,
+		&.css{
 			&.import {
-				color: @pink-light !important;
+				color: @light-pink !important;
 			}
 			&.at-rule {
-				color: @green !important;
+				color: @purple !important;
 				.keyword {
-					color: @green;
+					color: @purple;
 				}
 			}
 		}
@@ -73,9 +85,23 @@ atom-text-editor .search-results .marker.current-result .region {
 				color: @green;
 			}
 		}
+		&.new {
+			color: @pink;
+			font-style: italic;
+		}
 	}
 	&.operator {
 		color: @syntax-text-color;
+		&.new {
+			color: @pink;
+			font-style: italic;
+		}
+		&.accessor {
+			color: @lighter-gray;
+		}
+	}
+	&.other.important {
+		color: lighten(@red, 6%);
 	}
 	&.other.special-method {
 		color: @blue;
@@ -89,11 +115,31 @@ atom-text-editor .search-results .marker.current-result .region {
 }
 .storage {
 	color: @orange;
+	&.java {
+		&.type {
+			font-style: italic;
+		}
+		&.modifier {
+			&.import {
+				color: @very-light-gray;
+			}
+			&.package {
+				color: @blue;
+			}
+		}
+	}
 }
 .constant {
 	color: @orange;
 	&.character.escape {
 		color: @blue;
+	}
+	&.id {
+		&.tag {
+			&.pug, &.jade {
+				color: @light-orange;
+			}
+		}
 	}
 	&.numeric {
 		color: @orange;
@@ -109,23 +155,51 @@ atom-text-editor .search-results .marker.current-result .region {
 	}
 }
 .variable {
-	color: @pink;
+	color: @light-pink;
 	&.interpolation {
 		color: darken(@pink, 10%);
 	}
 	&.parameter.function {
-		color: @syntax-text-color;
+		color: @lighter-gray;
+		font-style: italic;
+	}
+	&.other {
+		&.js {
+			&.readwrite {
+				color: @syntax-text-color;
+			}
+			&.property {
+				color: @very-light-gray;
+			}
+		}
 	}
 }
-.invalid.illegal {
-	border-bottom: 1px dashed fade(@red, 50%);
+.invalid {
+	&.illegal {
+		border-bottom: 1px dashed fade(@red, 50%);
+	}
+	&.deprecated {
+		background-color: fade(#FF2C6D, 62%);
+	}
 }
+
+
 .string {
 	color: @green;
 	&.regexp {
 		color: @blue;
 		.source.ruby.embedded {
 			color: @orange;
+		}
+	}
+	&.unquoted {
+		&.js {
+			color: @light-orange;
+		}
+	}
+	& .punctuation {
+		.section.embedded .source {
+			color: @green;
 		}
 	}
 	&.other.link {
@@ -148,6 +222,9 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.identity {
 			color: @blue;
 		}
+		&.string{
+			color: @green;
+		}
 		&.bold {
 			color: @light-orange;
 			font-weight: bold;
@@ -155,6 +232,11 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.italic {
 			color: @pink;
 			font-style: italic;
+		}
+		&.tag {
+			&.jsx {
+				color: @orange;
+			}
 		}
 	}
 	&.section.embedded {
@@ -167,17 +249,24 @@ atom-text-editor .search-results .marker.current-result .region {
 	}
 	&.type {
 		color: @white;
+		&.object {
+			&.module {
+				&.js {
+					color: @purple
+				}
+			}
+		}
 	}
 	&.function {
-		color: @blue;
+		color: @blue-light;
 		&.any-method {
-			color: @blue;
+			color: @blue-light;
 		}
 	}
 }
 .entity {
 	&.name.function {
-		color: @blue;
+		color: @blue-light;
 	}
 	&.name.type {
 		color: @light-orange;
@@ -220,6 +309,9 @@ atom-text-editor .search-results .marker.current-result .region {
 		background-color: @gray;
 		color: @syntax-text-color;
 	}
+	&.method-call.java {
+		color: @very-light-gray;
+	}
 }
 .none {
 	color: @syntax-text-color;
@@ -261,6 +353,9 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.heading {
 		color: @green;
 	}
+}
+.bracket-matcher .region {
+	border-bottom-color: @green;
 }
 :host([mini]) .scroll-view,
 atom-text-editor[mini] .scroll-view {
