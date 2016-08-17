@@ -99,6 +99,18 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.accessor {
 			color: @lighter-gray;
 		}
+		&.logical {
+			color: @light-orange;
+		}
+		&.key {
+			color: @light-orange;
+		}
+		&.comparison {
+			color: @light-orange;
+		}
+		&.php.class {
+			color: @orange;
+		}
 	}
 	&.other.important {
 		color: lighten(@red, 6%);
@@ -172,6 +184,12 @@ atom-text-editor .search-results .marker.current-result .region {
 				color: @very-light-gray;
 			}
 		}
+		&.php {
+			color: @lighter-gray;
+		}
+	}
+	&.php {
+		color: @pink;
 	}
 }
 .invalid {
@@ -238,9 +256,20 @@ atom-text-editor .search-results .marker.current-result .region {
 				color: @orange;
 			}
 		}
+		&.php {
+			&.variable {
+				color: @lighter-gray;
+			}
+		}
 	}
 	&.section.embedded {
 		color: lighten(@pink, 10%);
+		&.php {
+			&.begin,
+			&.end {
+				color: @very-light-gray;
+			}
+		}
 	}
 }
 .support {
@@ -252,21 +281,28 @@ atom-text-editor .search-results .marker.current-result .region {
 		&.object {
 			&.module {
 				&.js {
-					color: @purple
+					color: @purple;
 				}
 			}
 		}
 	}
 	&.function {
-		color: @blue-light;
+		color: @light-blue;
 		&.any-method {
-			color: @blue-light;
+			color: @light-blue;
+		}
+	}
+	&.other {
+		&.namespace {
+			&.php {
+				color: @purple;
+			}
 		}
 	}
 }
 .entity {
 	&.name.function {
-		color: @blue-light;
+		color: @light-blue;
 	}
 	&.name.type {
 		color: @light-orange;
@@ -312,6 +348,16 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.method-call.java {
 		color: @very-light-gray;
 	}
+	&.function-call {
+		&.object.php {
+			color: @light-blue;
+		}
+	}
+	&.function {
+		&.arguments {
+			font-style: italic;
+		}
+	}
 }
 .none {
 	color: @syntax-text-color;
@@ -352,6 +398,14 @@ atom-text-editor .search-results .marker.current-result .region {
 	color: lighten(@light-gray, 5);
 	&.heading {
 		color: @green;
+	}
+	&.link {
+		color: @light-orange;
+	}
+	&.list {
+		&.ordered {
+			color: @pink;
+		}
 	}
 }
 .bracket-matcher .region {
