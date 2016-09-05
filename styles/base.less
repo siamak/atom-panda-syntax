@@ -140,7 +140,17 @@ atom-text-editor .search-results .marker.current-result .region {
 			}
 		}
 	}
+	&.pug, &.jade {
+		&.type {
+			&.import {
+				&.include {
+					color: @purple;
+				}
+			}
+		}
+	}
 }
+
 .constant {
 	color: @orange;
 	&.character.escape {
@@ -149,7 +159,7 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.id {
 		&.tag {
 			&.pug, &.jade {
-				color: @light-orange;
+				color: @light-blue;
 			}
 		}
 	}
@@ -174,6 +184,15 @@ atom-text-editor .search-results .marker.current-result .region {
 	&.parameter.function {
 		color: @lighter-gray;
 		font-style: italic;
+	}
+	&.control {
+		&.import {
+			&.include {
+				&.pug {
+					color: @green;
+				}
+			}
+		}
 	}
 	&.other {
 		&.js {
