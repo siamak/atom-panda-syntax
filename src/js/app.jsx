@@ -81,7 +81,7 @@ class PandaApp extends Component {
 					<h1 className="title">
 						Panda Syntax Theme
 						<i>`A Superminimal, dark Syntax Theme for Editors, IDEs, Terminal.`</i>
-						<u>Today +3000 Developers Using Panda.</u>
+						<u>Today +10000 Developers Using Panda.</u>
 						{/* <i>`A Superminimal, dark Syntax Theme for <a href='https://github.com/siamak/atom-panda-syntax' target='_blank'>Atom</a>, <a href='https://github.com/siamak/panda-syntax-sublime' target='_blank'>Sublime Text</a>, <a href='https://github.com/tinkertrain/panda-syntax-vscode' target='_blank'>Visual Studio Code</a>, <a href='https://github.com/PandaTheme/panda-syntax-iterm' target='_blank'>iTerm 2</a>, <a href='https://github.com/PandaTheme/pycharm-panda-syntax' target='_blank'>Pycharm</a>.` */}
 						{/* </i> */}
 						<a className={styles.hero_link} href="https://github.com/PandaTheme">github.com/PandaTheme</a>
