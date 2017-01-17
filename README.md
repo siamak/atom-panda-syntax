@@ -23,9 +23,10 @@ apm install atom-panda-syntax
 
 ## 唥 Language support
 Panda Syntax Theme Supported Packages `language-*` and optimized for many languages:
-* HTML: `Pug(Jade)`, `Slim`, `MarkDown(.md)`
-* CSS: `Sass`, `SCSS`, `LESS`.
-* JavaScript: `JS`, `ES6`, `JSX`.
+* _HTML:_ `Pug(Jade)`, `Slim`, `MarkDown(.md)`, `HAML`.
+* _CSS:_ `Sass`, `SCSS`, `LESS`.
+* _JavaScript:_ `JS`, `ES6`, `JSX`, `CoffeeScript`.
+* _C++_, _Python_, _GO_.
 
 ## 📷 Screen Shots
 #### — JSX:
