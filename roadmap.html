@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panda — Factory to Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #0f0f13;
+    --bg2:     #141418;
+    --surface: #1a1a21;
+    --s2:      #202028;
+    --border:  #28283a;
+    --b2:      #333348;
+
+```
+--pink:   #ff75b5;
+--cyan:   #6fc1ff;
+--green:  #19f9d8;
+--orange: #ffb86c;
+--purple: #b084eb;
+--yellow: #ffe66d;
+--red:    #ff5c7a;
+
+--text:   #e8e8f2;
+--dim:    #7878a0;
+--muted:  #3a3a55;
+```
+
+}
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+background: var(–bg);
+color: var(–text);
+font-family: ‘Instrument Sans’, sans-serif;
+font-size: 15px;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+/* HERO */
+.hero {
+padding: 72px 48px 56px;
+max-width: 920px;
+margin: 0 auto;
+border-bottom: 1px solid var(–border);
+}
+
+.hero-kicker {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.18em;
+color: var(–muted);
+margin-bottom: 24px;
+display: flex;
+align-items: center;
+gap: 14px;
+}
+
+.hero-kicker::before {
+content: ‘🐼’;
+font-size: 16px;
+}
+
+h1 {
+font-family: ‘Instrument Serif’, serif;
+font-size: clamp(40px, 6vw, 72px);
+line-height: 1.0;
+letter-spacing: -0.02em;
+margin-bottom: 20px;
+}
+
+h1 em { font-style: italic; color: var(–pink); }
+
+.hero p {
+font-size: 16px;
+color: var(–dim);
+max-width: 580px;
+margin-bottom: 36px;
+}
+
+/* DRACULA AUTOPSY */
+.autopsy {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+margin-bottom: 0;
+}
+
+.autopsy-cell {
+background: var(–surface);
+padding: 20px;
+text-align: center;
+}
+
+.autopsy-num {
+font-family: ‘Instrument Serif’, serif;
+font-size: 32px;
+line-height: 1;
+margin-bottom: 4px;
+}
+
+.autopsy-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(–dim);
+}
+
+/* PAGE */
+.page { max-width: 920px; margin: 0 auto; padding: 0 48px; }
+
+/* SECTION */
+.block {
+padding: 56px 0;
+border-bottom: 1px solid var(–border);
+}
+
+.block-kicker {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.16em;
+color: var(–muted);
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+
+.block-kicker::after {
+content: ‘’;
+width: 32px; height: 1px;
+background: var(–border);
+}
+
+h2 {
+font-family: ‘Instrument Serif’, serif;
+font-size: clamp(24px, 3vw, 34px);
+letter-spacing: -0.02em;
+margin-bottom: 8px;
+line-height: 1.1;
+}
+
+h2 em { font-style: italic; color: var(–cyan); }
+
+.block-sub {
+font-size: 14px;
+color: var(–dim);
+margin-bottom: 32px;
+max-width: 600px;
+}
+
+/* MASTER STEPS */
+.steps { display: flex; flex-direction: column; gap: 0; }
+
+.step {
+display: grid;
+grid-template-columns: 52px 1fr;
+gap: 0;
+position: relative;
+}
+
+.step:not(:last-child) .step-line {
+position: absolute;
+left: 25px;
+top: 52px;
+bottom: 0;
+width: 2px;
+background: linear-gradient(to bottom, var(–b2), var(–border));
+}
+
+.step-left {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-top: 14px;
+}
+
+.step-num {
+width: 32px; height: 32px;
+border-radius: 50%;
+border: 2px solid;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 11px;
+font-weight: 500;
+flex-shrink: 0;
+background: var(–bg);
+z-index: 1;
+}
+
+.step-right {
+padding: 12px 0 36px 20px;
+}
+
+.step-meta {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+flex-wrap: wrap;
+}
+
+.step-title {
+font-size: 16px;
+font-weight: 600;
+letter-spacing: -0.01em;
+}
+
+.step-phase {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+padding: 2px 8px;
+border-radius: 4px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+}
+
+.step-time {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+color: var(–muted);
+}
+
+.step-body {
+font-size: 14px;
+color: var(–dim);
+margin-bottom: 12px;
+line-height: 1.65;
+}
+
+.step-tasks {
+display: flex;
+flex-wrap: wrap;
+gap: 6px;
+}
+
+.task {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 11px;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 5px;
+padding: 3px 10px;
+color: var(–dim);
+}
+
+/* DRACULA PRO AUTOPSY TABLE */
+.feature-table {
+width: 100%;
+border-collapse: collapse;
+font-size: 13.5px;
+}
+
+.feature-table thead tr {
+background: var(–surface);
+}
+
+.feature-table th {
+padding: 12px 16px;
+text-align: left;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+border-bottom: 2px solid var(–b2);
+}
+
+.feature-table th:nth-child(2) { color: var(–purple); }
+.feature-table th:nth-child(3) { color: var(–pink); }
+
+.feature-table td {
+padding: 11px 16px;
+border-bottom: 1px solid var(–border);
+color: var(–dim);
+vertical-align: top;
+}
+
+.feature-table tr:hover td { background: rgba(255,255,255,0.01); }
+
+.feature-table td:first-child { color: var(–text); font-weight: 500; }
+
+.yes  { color: #4ade80; }
+.no   { color: var(–muted); }
+.beat { color: var(–pink); font-weight: 600; }
+.tag-free { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: rgba(25,249,216,0.1); color: var(–green); }
+.tag-pro  { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: rgba(255,117,181,0.1); color: var(–pink); }
+.tag-win  { font-family: ‘JetBrains Mono’, monospace; font-size: 10px; padding: 2px 7px; border-radius: 4px; background: rgba(255,230,109,0.1); color: var(–yellow); }
+
+/* PANDA PRO CONTENTS */
+.pro-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 12px;
+}
+
+.pro-card {
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 10px;
+padding: 22px;
+position: relative;
+overflow: hidden;
+}
+
+.pro-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+}
+
+.pro-card h4 {
+font-size: 14px;
+font-weight: 600;
+margin-bottom: 8px;
+letter-spacing: -0.01em;
+display: flex;
+align-items: center;
+gap: 8px;
+}
+
+.pro-card p {
+font-size: 13px;
+color: var(–dim);
+line-height: 1.6;
+}
+
+.pro-card ul {
+list-style: none;
+font-size: 13px;
+color: var(–dim);
+display: flex;
+flex-direction: column;
+gap: 5px;
+margin-top: 8px;
+}
+
+.pro-card ul li::before { content: ’→ ’; color: var(–muted); }
+
+.free-badge {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 9px;
+padding: 2px 6px;
+border-radius: 3px;
+background: rgba(25,249,216,0.1);
+color: var(–green);
+border: 1px solid rgba(25,249,216,0.2);
+}
+
+/* VARIANTS */
+.variants {
+display: grid;
+grid-template-columns: repeat(5, 1fr);
+gap: 10px;
+margin-bottom: 20px;
+}
+
+.variant {
+border-radius: 10px;
+overflow: hidden;
+border: 1px solid var(–border);
+}
+
+.variant-preview {
+height: 64px;
+display: flex;
+align-items: center;
+justify-content: center;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 11px;
+font-weight: 500;
+letter-spacing: 0.05em;
+}
+
+.variant-name {
+background: var(–surface);
+padding: 8px 10px;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+color: var(–dim);
+text-align: center;
+}
+
+.variant-badge {
+font-size: 9px;
+padding: 1px 5px;
+border-radius: 3px;
+margin-left: 4px;
+}
+
+/* REVENUE */
+.rev-table { display: flex; flex-direction: column; gap: 8px; }
+
+.rev-row {
+display: grid;
+grid-template-columns: 2fr 120px 100px 1fr;
+gap: 16px;
+align-items: center;
+background: var(–surface);
+border: 1px solid var(–border);
+border-radius: 8px;
+padding: 14px 18px;
+}
+
+.rev-row.header {
+background: transparent;
+border-color: transparent;
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.1em;
+color: var(–muted);
+padding-bottom: 4px;
+}
+
+.rev-name { font-weight: 500; font-size: 14px; }
+.rev-est { font-family: ‘JetBrains Mono’, monospace; font-size: 13px; color: var(–green); }
+.rev-effort { font-size: 12px; color: var(–dim); }
+.rev-note { font-size: 12px; color: var(–dim); }
+
+/* CALLOUT */
+.callout {
+background: linear-gradient(120deg, rgba(255,117,181,0.05), rgba(111,193,255,0.05));
+border: 1px solid rgba(111,193,255,0.18);
+border-radius: 12px;
+padding: 22px 26px;
+margin-top: 28px;
+}
+
+.callout-label {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: 0.12em;
+color: var(–cyan);
+margin-bottom: 8px;
+}
+
+.callout p { font-size: 14px; color: var(–dim); line-height: 1.65; }
+.callout strong { color: var(–text); }
+
+/* TIMELINE SUMMARY */
+.timeline-summary {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1px;
+background: var(–border);
+border: 1px solid var(–border);
+border-radius: 12px;
+overflow: hidden;
+}
+
+.ts-cell {
+background: var(–bg2);
+padding: 24px 20px;
+}
+
+.ts-cell:hover { background: var(–surface); }
+
+.ts-phase {
+font-family: ‘JetBrains Mono’, monospace;
+font-size: 9px;
+text-transform: uppercase;
+letter-spacing: 0.14em;
+margin-bottom: 6px;
+}
+
+.ts-time {
+font-size: 13px;
+font-weight: 600;
+margin-bottom: 12px;
+letter-spacing: -0.01em;
+}
+
+.ts-list {
+list-style: none;
+font-size: 12px;
+color: var(–dim);
+display: flex;
+flex-direction: column;
+gap: 5px;
+}
+
+.ts-list li { padding-left: 12px; position: relative; line-height: 1.4; }
+.ts-list li::before { content: ‘·’; position: absolute; left: 0; color: var(–muted); }
+
+footer {
+max-width: 920px;
+margin: 0 auto;
+padding: 40px 48px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+}
+
+footer .brand {
+font-family: ‘Instrument Serif’, serif;
+font-size: 20px;
+color: var(–dim);
+}
+
+footer .brand em { font-style: italic; color: var(–pink); }
+footer p { font-family: ‘JetBrains Mono’, monospace; font-size: 11px; color: var(–muted); }
+
+@media (max-width: 680px) {
+.hero, .page, footer { padding-left: 24px; padding-right: 24px; }
+.autopsy, .timeline-summary { grid-template-columns: repeat(2, 1fr); }
+.pro-grid, .variants { grid-template-columns: repeat(2, 1fr); }
+.rev-row { grid-template-columns: 1fr 1fr; }
+.rev-note { display: none; }
+.step { grid-template-columns: 40px 1fr; }
+}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+
+<div class="hero">
+  <div class="hero-kicker">Panda Theme · Master Roadmap · April 2026</div>
+  <h1>Factory to <em>Market</em></h1>
+  <p>Every step from rebuilding the color foundation to shipping Panda Pro and owning the aesthetic developer market. Nothing skipped.</p>
+
+  <div class="autopsy">
+    <div class="autopsy-cell">
+      <div class="autopsy-num" style="color:var(--pink)">1.2M</div>
+      <div class="autopsy-label">VS Code installs</div>
+    </div>
+    <div class="autopsy-cell">
+      <div class="autopsy-num" style="color:var(--cyan)">$79</div>
+      <div class="autopsy-label">Dracula Pro price</div>
+    </div>
+    <div class="autopsy-cell">
+      <div class="autopsy-num" style="color:var(--green)">$0</div>
+      <div class="autopsy-label">Panda revenue today</div>
+    </div>
+    <div class="autopsy-cell">
+      <div class="autopsy-num" style="color:var(--yellow)">$14</div>
+      <div class="autopsy-label">Panda Pro target price</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+<!-- DRACULA PRO AUTOPSY -->
+
+<div class="block">
+  <div class="block-kicker">00 — Intelligence</div>
+  <h2>Everything Dracula Pro has.<br><em>Everything Panda will beat.</em></h2>
+  <p class="block-sub">Full feature breakdown of what $79 gets you from Dracula — and how Panda's free + pro split will undercut and outperform it.</p>
+
+  <table class="feature-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>🧛 Dracula Pro ($79)</th>
+        <th>🐼 Panda Plan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Theme variants</td>
+        <td class="yes">6 variants (Blade, Buffy, Lincoln, Morbius, Van Helsing, Alucard light)</td>
+        <td class="beat">5 free + 5 Pro = 10 total. Free has more than Dracula's paid.</td>
+      </tr>
+      <tr>
+        <td>WCAG AA contrast</td>
+        <td class="yes">✓ 4.5:1 ratio guaranteed</td>
+        <td class="beat">✓ WCAG AA + OKLCH-native verification. Mathematically guaranteed, not manually checked.</td>
+      </tr>
+      <tr>
+        <td>Light variant</td>
+        <td class="yes">Alucard (Pro only)</td>
+        <td class="beat">Panda Bamboo — <span class="tag-free">FREE</span>. Anyone can use a light variant without paying.</td>
+      </tr>
+      <tr>
+        <td>Monospace fonts</td>
+        <td class="yes">5 fonts bundled (all free anyway: Cascadia, Fira Code, Inconsolata, JetBrains Mono, Victor Mono)</td>
+        <td class="beat">Same 5 + curated font pairing guide with Panda-specific ligature recommendations. <span class="tag-free">FREE</span></td>
+      </tr>
+      <tr>
+        <td>Wallpapers</td>
+        <td class="yes">Programmatically generated, all sizes including 8K and Apple Watch</td>
+        <td class="beat">Generated from <code style="font-family:monospace;font-size:11px">panda-colors</code>. All variants, all sizes. <span class="tag-free">FREE</span> base, Pro gets animated/seasonal.</td>
+      </tr>
+      <tr>
+        <td>App coverage</td>
+        <td class="yes">~20 apps in Pro package</td>
+        <td class="beat">15+ free ports in org. Pro buyers get priority ports (Cursor, Zed, Raycast, Warp day-1).</td>
+      </tr>
+      <tr>
+        <td>Design palette files</td>
+        <td class="yes">HEX, RGB, HSL in design folder</td>
+        <td class="beat"><code style="font-family:monospace;font-size:11px">@pandatheme/colors</code> npm package. OKLCH + hex + CSS vars + Figma tokens. <span class="tag-free">FREE</span></td>
+      </tr>
+      <tr>
+        <td>Color specification</td>
+        <td class="yes">PALETTE.md file with color codes</td>
+        <td class="beat">Full published spec at panda.dev/spec with OKLCH math, semantic roles, contrast ratios. <span class="tag-free">FREE</span></td>
+      </tr>
+      <tr>
+        <td>Productivity e-book</td>
+        <td class="yes">"14 Habits" book by Zeno Rocha</td>
+        <td class="beat">Panda publishes a free "Setup Guide" — opinionated dev environment guide. <span class="tag-free">FREE</span>. No paywalling knowledge.</td>
+      </tr>
+      <tr>
+        <td>Bonus screencast</td>
+        <td class="yes">1 screencast included</td>
+        <td class="beat">YouTube channel — "Panda Setup" series. Free, public, drives installs. <span class="tag-free">FREE</span></td>
+      </tr>
+      <tr>
+        <td>Custom app icons</td>
+        <td class="yes">macOS app icons included</td>
+        <td class="beat">Panda icon pack — macOS + Windows. Pro variant icons for each theme. <span class="tag-pro">PRO</span></td>
+      </tr>
+      <tr>
+        <td>License</td>
+        <td class="yes">3 devices</td>
+        <td class="beat">Unlimited personal devices. Team license available. <span class="tag-win">Better terms</span></td>
+      </tr>
+      <tr>
+        <td>Price</td>
+        <td style="color:var(--red); font-weight:600">$79</td>
+        <td class="beat"><strong style="color:var(--yellow)">$14</strong> one-time. 5.6× cheaper. Free updates forever.</td>
+      </tr>
+      <tr>
+        <td>Color engine</td>
+        <td class="no">Static files. Colors chosen by taste in 2013.</td>
+        <td class="beat">OKLCH-based generator. Mathematically derived variants. Open source. <span class="tag-win">Only theme with this</span></td>
+      </tr>
+      <tr>
+        <td>npm package</td>
+        <td class="no">None</td>
+        <td class="beat"><code style="font-family:monospace;font-size:11px">@pandatheme/colors</code> — import tokens in your own tools. <span class="tag-free">FREE</span></td>
+      </tr>
+      <tr>
+        <td>Figma tokens</td>
+        <td class="no">None</td>
+        <td class="beat">W3C DTCG token format, Figma Community kit. <span class="tag-free">FREE</span> base.</td>
+      </tr>
+      <tr>
+        <td>Open metrics</td>
+        <td class="yes">Public open dashboard</td>
+        <td class="beat">panda.dev/open — same, but also shows npm downloads and GitHub org stats.</td>
+      </tr>
+      <tr>
+        <td>Newsletter</td>
+        <td class="yes">11,460 subscribers</td>
+        <td>Start from 0. Target: 2k in year 1 via install base + launch.</td>
+      </tr>
+      <tr>
+        <td>Merch</td>
+        <td class="yes">Hoodies, posters, stickers, hats (all sold out)</td>
+        <td>Phase 3 — after Pro launch. Start with stickers + print-on-demand.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-label">Strategy</div>
+    <p>Dracula's weakness is price and age. <strong>$79 for fonts that are all free anyway</strong> — that's the core criticism on Hacker News. Panda at $14 with a <strong>stronger free tier than Dracula's paid tier</strong> is the move. Make Dracula look expensive and stagnant by comparison. The OKLCH color engine is the technical differentiator nobody else has.</p>
+  </div>
+</div>
+
+<!-- PANDA PRO VARIANTS -->
+
+<div class="block">
+  <div class="block-kicker">0.5 — Pro Design</div>
+  <h2>Panda Pro — <em>10 variants, $14</em></h2>
+  <p class="block-sub">5 free variants for everyone. 5 Pro-exclusive variants. Named after bamboo forest moods, not vampire characters.</p>
+
+  <div class="variants">
+    <div class="variant">
+      <div class="variant-preview" style="background:#1a1b26; color:#ff75b5">Dark</div>
+      <div class="variant-name">Panda Dark <span class="variant-badge tag-free">free</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#f5f0eb; color:#c4507a">Bamboo</div>
+      <div class="variant-name">Panda Bamboo <span class="variant-badge tag-free">free</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#1a1b26; color:#ff75b5; opacity:0.85">Storm</div>
+      <div class="variant-name">Panda Storm <span class="variant-badge tag-free">free</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#0d0e18; color:#ff75b5">Midnight</div>
+      <div class="variant-name">Midnight <span class="variant-badge tag-pro">pro</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#1e2030; color:#ff9dc7">Mist</div>
+      <div class="variant-name">Mist <span class="variant-badge tag-pro">pro</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#fdf6ee; color:#a03060">Sakura</div>
+      <div class="variant-name">Sakura <span class="variant-badge tag-pro">pro</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#12121a; color:#22ffee">Abyss</div>
+      <div class="variant-name">Abyss <span class="variant-badge tag-pro">pro</span></div>
+    </div>
+    <div class="variant">
+      <div class="variant-preview" style="background:#1a1b26; color:#ffd700; filter:contrast(1.2)">Ember</div>
+      <div class="variant-name">Ember <span class="variant-badge tag-pro">pro</span></div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; color:var(--dim)">All variants are mathematically derived from one OKLCH source. Consistent hue identity across all — only L (lightness) and C (chroma) shift.</p>
+</div>
+
+<!-- MASTER STEPS -->
+
+<div class="block">
+  <div class="block-kicker">01–18 — The Full Roadmap</div>
+  <h2>Every step.<br><em>Factory to market.</em></h2>
+  <p class="block-sub">Ordered by dependency. Can't do step 5 before step 2. Each step is a standalone unit of work.</p>
+
+  <div class="steps">
+
+```
+<!-- FOUNDATION -->
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--cyan); color:var(--cyan)">1</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Create panda-colors repo</span>
+      <span class="step-phase" style="background:rgba(111,193,255,0.1);color:var(--cyan)">Foundation</span>
+      <span class="step-time">Day 1 · 2–3 hrs</span>
+    </div>
+    <p class="step-body">New repo under PandaTheme/panda-colors. Initialize TypeScript project with pnpm. This is the single source of truth for all colors going forward. Everything else depends on this existing.</p>
+    <div class="step-tasks">
+      <span class="task">pnpm init</span>
+      <span class="task">tsconfig.json</span>
+      <span class="task">src/tokens.ts with OKLCH values</span>
+      <span class="task">src/convert.ts (oklch→hex)</span>
+      <span class="task">README.md</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--cyan); color:var(--cyan)">2</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Define all tokens + semantic roles</span>
+      <span class="step-phase" style="background:rgba(111,193,255,0.1);color:var(--cyan)">Foundation</span>
+      <span class="step-time">Day 1–2 · 3–4 hrs</span>
+    </div>
+    <p class="step-body">Write src/tokens.ts with every color in OKLCH. Write src/semantic.ts mapping tokens to syntax roles (keyword, string, function, type, etc.). Write src/wcag.ts that auto-checks contrast ratios at build time — if any token fails AA, the build fails.</p>
+    <div class="step-tasks">
+      <span class="task">10 base tokens in OKLCH</span>
+      <span class="task">semantic role mapping</span>
+      <span class="task">WCAG AA build check</span>
+      <span class="task">Color Semantics doc</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--cyan); color:var(--cyan)">3</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Build variants system</span>
+      <span class="step-phase" style="background:rgba(111,193,255,0.1);color:var(--cyan)">Foundation</span>
+      <span class="step-time">Day 2 · 2 hrs</span>
+    </div>
+    <p class="step-body">Write src/variants.ts — generates all 8 theme variants by adjusting L and C in OKLCH. This is the code that makes Panda Pro possible without designing 8 themes from scratch. Midnight, Mist, Bamboo, Sakura, Abyss, Ember all come from this one file.</p>
+    <div class="step-tasks">
+      <span class="task">adjustL() helper</span>
+      <span class="task">3 free variants</span>
+      <span class="task">5 Pro variants</span>
+      <span class="task">variant preview generator</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--cyan); color:var(--cyan)">4</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Build generators — all output formats</span>
+      <span class="step-phase" style="background:rgba(111,193,255,0.1);color:var(--cyan)">Foundation</span>
+      <span class="step-time">Day 3–5 · 1 day</span>
+    </div>
+    <p class="step-body">Write generators/ folder. Each file takes PandaTokens and outputs a specific format. pnpm build runs all generators and drops results in dist/. This is the automation that makes every port trivial to maintain.</p>
+    <div class="step-tasks">
+      <span class="task">generators/vscode.ts</span>
+      <span class="task">generators/css.ts</span>
+      <span class="task">generators/json.ts (W3C DTCG)</span>
+      <span class="task">generators/terminal.ts</span>
+      <span class="task">generators/figma.ts</span>
+      <span class="task">build.ts entrypoint</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--cyan); color:var(--cyan)">5</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Publish @pandatheme/colors to npm</span>
+      <span class="step-phase" style="background:rgba(111,193,255,0.1);color:var(--cyan)">Foundation</span>
+      <span class="step-time">Day 5 · 1 hr</span>
+    </div>
+    <p class="step-body">Publish the package. Version 1.0.0. This is the moment the ecosystem becomes programmable. Any developer or port maintainer can now import Panda tokens directly. Set up GitHub Actions to auto-publish on version tag.</p>
+    <div class="step-tasks">
+      <span class="task">npm publish</span>
+      <span class="task">GitHub Actions CI</span>
+      <span class="task">CHANGELOG.md</span>
+      <span class="task">MIT license</span>
+    </div>
+  </div>
+</div>
+
+<!-- PORTS -->
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--pink); color:var(--pink)">6</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Rebuild VS Code theme from panda-colors</span>
+      <span class="step-phase" style="background:rgba(255,117,181,0.1);color:var(--pink)">Ports</span>
+      <span class="step-time">Week 2 · 4–6 hrs</span>
+    </div>
+    <p class="step-body">Replace the handcoded JSON in panda-syntax-vscode with generated output from panda-colors. Add semantic token support (VS Code 1.43+). Fix TypeScript, Rust, Go, Python, Prisma, MDX token coverage. Transfer repo from siamak/ to PandaTheme/ org. Bump to v3.0.</p>
+    <div class="step-tasks">
+      <span class="task">Transfer repo to org</span>
+      <span class="task">Semantic tokens API</span>
+      <span class="task">Rust / Go / Python fix</span>
+      <span class="task">Publish v3.0.0</span>
+      <span class="task">GitHub Sponsors enabled</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--pink); color:var(--pink)">7</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Port to Cursor editor</span>
+      <span class="step-phase" style="background:rgba(255,117,181,0.1);color:var(--pink)">Ports</span>
+      <span class="step-time">Week 2 · 2 hrs</span>
+    </div>
+    <p class="step-body">Cursor uses VS Code theme format. The generator already outputs this. Create PandaTheme/panda-syntax-cursor, publish to Cursor Marketplace. Fastest new audience. Cursor users are exactly the aesthetic-forward developer Panda targets.</p>
+    <div class="step-tasks">
+      <span class="task">New repo in org</span>
+      <span class="task">Cursor Marketplace publish</span>
+      <span class="task">README with screenshots</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--pink); color:var(--pink)">8</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Port to Zed editor</span>
+      <span class="step-phase" style="background:rgba(255,117,181,0.1);color:var(--pink)">Ports</span>
+      <span class="step-time">Week 2 · 2–3 hrs</span>
+    </div>
+    <p class="step-body">Write generators/zed.ts. Zed uses JSON with slightly different schema. Publish to Zed extension registry. Zed is growing fast — Dracula has it, Panda doesn't yet. Fix this.</p>
+    <div class="step-tasks">
+      <span class="task">generators/zed.ts</span>
+      <span class="task">Zed extension manifest</span>
+      <span class="task">Zed registry publish</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--pink); color:var(--pink)">9</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Terminal ecosystem ports</span>
+      <span class="step-phase" style="background:rgba(255,117,181,0.1);color:var(--pink)">Ports</span>
+      <span class="step-time">Week 3 · 3–4 hrs</span>
+    </div>
+    <p class="step-body">One generator, multiple outputs. generators/terminal.ts outputs Ghostty, WezTerm (Lua), Alacritty (TOML), iTerm2 (XML), Kitty (conf). All in one build pass. Create individual repos in org or one panda-terminal-themes monorepo.</p>
+    <div class="step-tasks">
+      <span class="task">Ghostty</span>
+      <span class="task">WezTerm</span>
+      <span class="task">Alacritty</span>
+      <span class="task">iTerm2 update</span>
+      <span class="task">Kitty</span>
+    </div>
+  </div>
+</div>
+
+<!-- ORG + BRAND -->
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--purple); color:var(--purple)">10</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">panda.dev — website launch</span>
+      <span class="step-phase" style="background:rgba(176,132,235,0.1);color:var(--purple)">Brand</span>
+      <span class="step-time">Week 3–4 · 1 week</span>
+    </div>
+    <p class="step-body">Next.js site. Homepage with live code preview, color palette, port directory. /spec page with full color spec. /open page with live metrics (npm downloads, GitHub stars, installs). Email signup powered by Resend. This is the conversion surface for Pro.</p>
+    <div class="step-tasks">
+      <span class="task">Homepage</span>
+      <span class="task">Live code preview</span>
+      <span class="task">Port directory</span>
+      <span class="task">/spec page</span>
+      <span class="task">/open metrics</span>
+      <span class="task">Email signup (Resend)</span>
+      <span class="task">OG images</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--purple); color:var(--purple)">11</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">GitHub org cleanup + .github profile</span>
+      <span class="step-phase" style="background:rgba(176,132,235,0.1);color:var(--purple)">Brand</span>
+      <span class="step-time">Week 3 · 2 hrs</span>
+    </div>
+    <p class="step-body">Create .github repo in PandaTheme org — this powers the org profile page at github.com/PandaTheme. Add profile README, contributing guide, port template. Archive dead repos. Pin the 6 best repos. Add topics/tags to each repo for discoverability.</p>
+    <div class="step-tasks">
+      <span class="task">.github/profile/README.md</span>
+      <span class="task">CONTRIBUTING.md</span>
+      <span class="task">Port template repo</span>
+      <span class="task">Archive old forks</span>
+      <span class="task">Pin best 6 repos</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--purple); color:var(--purple)">12</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Programmatic wallpapers</span>
+      <span class="step-phase" style="background:rgba(176,132,235,0.1);color:var(--purple)">Brand</span>
+      <span class="step-time">Week 4 · 3–4 hrs</span>
+    </div>
+    <p class="step-body">Generate wallpapers using Satori or Canvas — SVG→PNG pipeline driven by panda-colors tokens. One wallpaper design, all 8 variants, all resolutions (1080p, 1440p, 4K, 5K, ultrawide, phone). Free base wallpapers in repo. Animated / seasonal wallpapers for Pro.</p>
+    <div class="step-tasks">
+      <span class="task">Satori SVG generator</span>
+      <span class="task">All 8 variants</span>
+      <span class="task">1080p–5K + phone sizes</span>
+      <span class="task">Free release in GitHub</span>
+      <span class="task">Animated for Pro pack</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRO LAUNCH -->
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--yellow); color:var(--yellow)">13</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Assemble Panda Pro package</span>
+      <span class="step-phase" style="background:rgba(255,230,109,0.1);color:var(--yellow)">Pro</span>
+      <span class="step-time">Month 2 · 1 week</span>
+    </div>
+    <p class="step-body">Package everything into the Pro zip. 5 Pro variants for every supported app, wallpapers, icon pack, Figma tokens, font curation guide. Well-organized folder structure. Every file named consistently. Quality feels premium even before opening.</p>
+    <div class="step-tasks">
+      <span class="task">5 Pro variant themes × all apps</span>
+      <span class="task">Wallpapers all sizes</span>
+      <span class="task">macOS icon pack</span>
+      <span class="task">Figma token file</span>
+      <span class="task">Font curation PDF</span>
+      <span class="task">Setup guide PDF</span>
+      <span class="task">ZIP organized cleanly</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--yellow); color:var(--yellow)">14</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Set up Gumroad / Lemon Squeezy store</span>
+      <span class="step-phase" style="background:rgba(255,230,109,0.1);color:var(--yellow)">Pro</span>
+      <span class="step-time">Month 2 · 2 hrs</span>
+    </div>
+    <p class="step-body">Create product page. Price at $14. Write compelling copy — lead with "Everything Dracula Pro has, at 1/5th the price." Enable purchasing power parity for 160+ countries. Set up webhook to deliver zip on purchase. No DRM, no activation — trust your customers.</p>
+    <div class="step-tasks">
+      <span class="task">Gumroad product page</span>
+      <span class="task">$14 price + PPP</span>
+      <span class="task">Product screenshots</span>
+      <span class="task">Purchase delivery webhook</span>
+      <span class="task">Team license option ($49)</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--yellow); color:var(--yellow)">15</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Launch — announcement campaign</span>
+      <span class="step-phase" style="background:rgba(255,230,109,0.1);color:var(--yellow)">Pro</span>
+      <span class="step-time">Month 2 · Launch day</span>
+    </div>
+    <p class="step-body">Announce on X/Twitter, post on r/vscode and r/unixporn, submit to HackerNews Show HN, post on DEV.to. Email the list you've been building. Update VS Code Marketplace description with Pro link. The story: "1.2M installs, back from the dead, and now there's Pro."</p>
+    <div class="step-tasks">
+      <span class="task">X/Twitter thread</span>
+      <span class="task">Reddit r/vscode + r/unixporn</span>
+      <span class="task">HN Show HN post</span>
+      <span class="task">DEV.to article</span>
+      <span class="task">Email newsletter #1</span>
+      <span class="task">Marketplace description update</span>
+    </div>
+  </div>
+</div>
+
+<!-- GROWTH -->
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--green); color:var(--green)">16</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Figma Community kit</span>
+      <span class="step-phase" style="background:rgba(25,249,216,0.1);color:var(--green)">Growth</span>
+      <span class="step-time">Month 3 · 4 hrs</span>
+    </div>
+    <p class="step-body">Publish Panda color tokens as a Figma Community file. Free base (10 colors, dark only). Pro version includes all 8 variants, typography scale, component tokens, icon set. Figma Community has a completely different audience from VS Code — designers who will bring Panda into their projects.</p>
+    <div class="step-tasks">
+      <span class="task">Figma Community file</span>
+      <span class="task">Color styles</span>
+      <span class="task">Token variables</span>
+      <span class="task">Pro variants in paid</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-line"></div>
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--green); color:var(--green)">17</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">JetBrains official plugin</span>
+      <span class="step-phase" style="background:rgba(25,249,216,0.1);color:var(--green)">Growth</span>
+      <span class="step-time">Month 3 · 1 day</span>
+    </div>
+    <p class="step-body">Take ownership of the JetBrains port. The existing panda-syntax-intellij in the org is a community fork and inconsistent. Write generators/jetbrains.ts, publish an official plugin to JetBrains Marketplace. This covers IntelliJ, WebStorm, PyCharm, GoLand, DataGrip — one plugin, millions of users.</p>
+    <div class="step-tasks">
+      <span class="task">generators/jetbrains.ts</span>
+      <span class="task">JetBrains Marketplace publish</span>
+      <span class="task">All IDE variants</span>
+      <span class="task">UI + Editor theme</span>
+    </div>
+  </div>
+</div>
+
+<div class="step">
+  <div class="step-left">
+    <div class="step-num" style="border-color:var(--green); color:var(--green)">18</div>
+  </div>
+  <div class="step-right">
+    <div class="step-meta">
+      <span class="step-title">Merch + community flywheel</span>
+      <span class="step-phase" style="background:rgba(25,249,216,0.1);color:var(--green)">Growth</span>
+      <span class="step-time">Month 4+ · ongoing</span>
+    </div>
+    <p class="step-body">Start merch with zero inventory risk — Printful or Printify print-on-demand. Sticker pack first (highest margin, easiest to ship). Newsletter cadence: 1 email/month with a port update, dev environment tip, behind-the-scenes. Discord server. GitHub Discussions. Let the community build ports you don't have to maintain.</p>
+    <div class="step-tasks">
+      <span class="task">Sticker pack (Printful)</span>
+      <span class="task">Monthly newsletter</span>
+      <span class="task">Discord server</span>
+      <span class="task">GitHub Discussions</span>
+      <span class="task">Community port bounties</span>
+      <span class="task">Raycast / Alfred / Linear ports</span>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<!-- REVENUE PROJECTIONS -->
+
+<div class="block">
+  <div class="block-kicker">Revenue</div>
+  <h2>What this is <em>actually worth</em></h2>
+  <p class="block-sub">Conservative estimates. Based on 1.2M installs, typical open-source monetization conversion rates, and Dracula's public numbers as a benchmark.</p>
+
+  <div class="rev-table">
+    <div class="rev-row header">
+      <span>Stream</span>
+      <span>Est. monthly</span>
+      <span>Effort</span>
+      <span>Notes</span>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">GitHub Sponsors</div>
+      </div>
+      <div class="rev-est">$200–600</div>
+      <div class="rev-effort">1 hr setup</div>
+      <div class="rev-note">Enable now. 0.05% of installs × $5/mo avg</div>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">Panda Pro — launch month</div>
+      </div>
+      <div class="rev-est">$2,000–5,000</div>
+      <div class="rev-effort">1 month build</div>
+      <div class="rev-note">200–350 sales × $14. Launch spike.</div>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">Panda Pro — steady state</div>
+      </div>
+      <div class="rev-est">$400–1,200</div>
+      <div class="rev-effort">Ongoing</div>
+      <div class="rev-note">30–85 sales/mo from organic installs</div>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">Team licenses ($49)</div>
+      </div>
+      <div class="rev-est">$200–500</div>
+      <div class="rev-effort">Zero extra</div>
+      <div class="rev-note">5–10 teams/mo. Companies pay without thinking.</div>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">Figma Community kit</div>
+      </div>
+      <div class="rev-est">$100–400</div>
+      <div class="rev-effort">4 hrs build</div>
+      <div class="rev-note">Different audience. Designers finding their way in.</div>
+    </div>
+    <div class="rev-row">
+      <div>
+        <div class="rev-name">Merch (stickers, print-on-demand)</div>
+      </div>
+      <div class="rev-est">$50–200</div>
+      <div class="rev-effort">1 day setup</div>
+      <div class="rev-note">Low margin but brand signal. Worth it.</div>
+    </div>
+    <div class="rev-row" style="border-color:rgba(255,230,109,0.25); background: rgba(255,230,109,0.04)">
+      <div>
+        <div class="rev-name" style="color:var(--yellow)">Total (steady state after month 3)</div>
+      </div>
+      <div class="rev-est" style="color:var(--yellow); font-size:16px">$950–2,900</div>
+      <div class="rev-effort">—</div>
+      <div class="rev-note">Per month. Not life-changing but real and growing.</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-label">Reality check</div>
+    <p>Dracula Pro launched at $49, raised to $79, and <strong>sold 1,143 copies in the first 6 months</strong>. That's ~$70k in year 1 from a theme. Panda at $14 with more installs and a better free tier has every reason to hit similar or better unit volume. The lower price point means less hesitation — impulse buy territory.</p>
+  </div>
+</div>
+
+<!-- TIMELINE SUMMARY -->
+
+<div class="block" style="border-bottom:none">
+  <div class="block-kicker">Summary</div>
+  <h2>The 4-month <em>sprint</em></h2>
+
+  <div class="timeline-summary">
+    <div class="ts-cell">
+      <div class="ts-phase" style="color:var(--cyan)">Month 1</div>
+      <div class="ts-time">Foundation</div>
+      <ul class="ts-list">
+        <li>panda-colors repo + npm</li>
+        <li>OKLCH tokens + variants</li>
+        <li>VS Code v3 rebuilt</li>
+        <li>Cursor + Zed ports live</li>
+        <li>GitHub org cleaned up</li>
+        <li>GitHub Sponsors enabled</li>
+      </ul>
+    </div>
+    <div class="ts-cell">
+      <div class="ts-phase" style="color:var(--pink)">Month 2</div>
+      <div class="ts-time">Platform</div>
+      <ul class="ts-list">
+        <li>panda.dev live</li>
+        <li>Terminal ports (5 apps)</li>
+        <li>Wallpaper generator</li>
+        <li>Pro pack assembled</li>
+        <li>Gumroad store live</li>
+        <li>🚀 Panda Pro launches</li>
+      </ul>
+    </div>
+    <div class="ts-cell">
+      <div class="ts-phase" style="color:var(--purple)">Month 3</div>
+      <div class="ts-time">Expand</div>
+      <ul class="ts-list">
+        <li>Figma Community kit</li>
+        <li>JetBrains official plugin</li>
+        <li>Newsletter #1 + #2</li>
+        <li>First merch (stickers)</li>
+        <li>/open metrics page</li>
+        <li>HN + Reddit presence</li>
+      </ul>
+    </div>
+    <div class="ts-cell">
+      <div class="ts-phase" style="color:var(--green)">Month 4+</div>
+      <div class="ts-time">Flywheel</div>
+      <ul class="ts-list">
+        <li>Discord community</li>
+        <li>Community port bounties</li>
+        <li>Raycast / Linear / Warp</li>
+        <li>Blog + YouTube content</li>
+        <li>Panda Pro v2 (new variant)</li>
+        <li>Compound growth</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<footer>
+  <div class="brand"><em>Panda</em> Master Plan</div>
+  <p>factory to market · siamak · april 2026</p>
+</footer>
+
+</body>
+</html>
