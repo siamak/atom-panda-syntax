@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>panda-colors — Architecture & Color System</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* The revised Panda palette, defined in OKLCH */
+    --p-pink-oklch:    oklch(72% 0.22 355);
+    --p-cyan-oklch:    oklch(75% 0.13 220);
+    --p-green-oklch:   oklch(88% 0.18 175);
+    --p-orange-oklch:  oklch(80% 0.15 65);
+    --p-purple-oklch:  oklch(68% 0.16 295);
+    --p-yellow-oklch:  oklch(91% 0.17 98);
+    --p-bg-oklch:      oklch(15% 0.02 270);
+    --p-surface-oklch: oklch(19% 0.02 268);
+
+    /* Fallbacks as hex */
+    --p-pink:   #ff75b5;
+    --p-cyan:   #6fc1ff;
+    --p-green:  #19f9d8;
+    --p-orange: #ffb86c;
+    --p-purple: #b084eb;
+    --p-yellow: #ffe66d;
+    --p-bg:     #1a1b26;
+    --p-surface:#21222e;
+
+    --text: #e4e4f0;
+    --text-dim: #8888aa;
+    --text-muted: #44445a;
+    --border: #2a2a3a;
+    --border2: #35354a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--p-bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  a { color: var(--p-cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+
+  /* HEADER */
+  header {
+    border-bottom: 1px solid var(--border);
+    padding: 56px 0 48px;
+  }
+
+  .repo-path {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .repo-path .org { color: var(--p-cyan); }
+  .repo-path .slash { color: var(--text-muted); }
+  .repo-path .name { color: var(--text); }
+
+  h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+  }
+
+  h1 .accent { color: var(--p-pink); }
+
+  .tagline {
+    font-size: 16px;
+    color: var(--text-dim);
+    max-width: 560px;
+    margin-bottom: 28px;
+  }
+
+  .header-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+
+  .badge-oklch { border-color: rgba(111,193,255,0.3); color: var(--p-cyan); background: rgba(111,193,255,0.06); }
+  .badge-ts    { border-color: rgba(176,132,235,0.3); color: var(--p-purple); background: rgba(176,132,235,0.06); }
+  .badge-wcag  { border-color: rgba(25,249,216,0.3); color: var(--p-green); background: rgba(25,249,216,0.06); }
+  .badge-pub   { border-color: rgba(255,230,109,0.3); color: var(--p-yellow); background: rgba(255,230,109,0.06); }
+
+  /* SECTION */
+  section { padding: 56px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+
+  .section-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-meta::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 48px; }
+
+  h2 {
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .h2-note {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 28px;
+  }
+
+  /* WHY OKLCH BOX */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+
+  .why-cell {
+    background: var(--p-surface);
+    padding: 22px 20px;
+  }
+
+  .why-cell:hover { background: #252535; }
+
+  .why-icon {
+    font-size: 18px;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .why-cell h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .why-cell p {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  /* COLOR PALETTE PREVIEW */
+  .palette-section {
+    background: var(--p-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 28px;
+  }
+
+  .palette-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .color-tokens {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+  }
+
+  .token {
+    border: 1px solid var(--border2);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--p-bg);
+  }
+
+  .token-swatch {
+    height: 52px;
+    position: relative;
+  }
+
+  .token-swatch::after {
+    content: attr(data-oklch);
+    position: absolute;
+    bottom: 6px;
+    left: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: rgba(0,0,0,0.5);
+    mix-blend-mode: multiply;
+  }
+
+  .token-info {
+    padding: 8px 10px;
+  }
+
+  .token-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .token-hex {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .token-oklch-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--p-cyan);
+    margin-top: 2px;
+    opacity: 0.7;
+  }
+
+  /* REPO STRUCTURE */
+  .tree {
+    background: var(--p-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 2;
+  }
+
+  .tree-dir { color: var(--p-cyan); }
+  .tree-file { color: var(--text-dim); }
+  .tree-comment { color: var(--text-muted); font-style: italic; }
+  .tree-key { color: var(--p-pink); }
+  .tree-indent { padding-left: 20px; }
+  .tree-indent2 { padding-left: 40px; }
+
+  /* CODE BLOCK */
+  .code {
+    background: var(--p-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .code-header {
+    background: var(--p-surface);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-filename {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .code-lang {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .code-body {
+    padding: 20px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    line-height: 1.85;
+    overflow-x: auto;
+  }
+
+  .kw { color: var(--p-pink); }
+  .fn { color: var(--p-cyan); }
+  .str { color: var(--p-yellow); }
+  .num { color: var(--p-orange); }
+  .type { color: var(--p-purple); }
+  .cmt { color: var(--text-muted); font-style: italic; }
+  .prop { color: var(--p-cyan); }
+  .val { color: var(--p-green); }
+  .obj { color: var(--text); }
+
+  /* OUTPUTS TABLE */
+  .outputs {
+    display: grid;
+    gap: 10px;
+  }
+
+  .output-row {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: 16px;
+    align-items: center;
+    background: var(--p-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 13px;
+  }
+
+  .output-row:hover { border-color: var(--border2); }
+
+  .output-format {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--p-yellow);
+    font-weight: 500;
+  }
+
+  .output-desc { color: var(--text-dim); font-size: 13px; }
+
+  .output-consumer {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* SEMANTIC ROLES */
+  .roles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .role {
+    background: var(--p-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .role-dot {
+    width: 12px; height: 12px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .role-body h4 {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 3px;
+    letter-spacing: -0.01em;
+  }
+
+  .role-body p {
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .role-body code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    background: var(--p-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* COMPARISON */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .compare-block {
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .compare-block.old { background: rgba(255,85,85,0.04); border-color: rgba(255,85,85,0.15); }
+  .compare-block.new { background: rgba(25,249,216,0.03); border-color: rgba(25,249,216,0.15); }
+
+  .compare-block h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  .compare-block.old h4 { color: #f87171; }
+  .compare-block.new h4 { color: var(--p-green); }
+
+  .compare-block pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  /* SUMMARY CALLOUT */
+  .callout {
+    background: linear-gradient(135deg, rgba(255,117,181,0.06), rgba(111,193,255,0.06));
+    border: 1px solid rgba(111,193,255,0.2);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-top: 32px;
+  }
+
+  .callout h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--p-cyan);
+    margin-bottom: 10px;
+  }
+
+  .callout p {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .callout strong { color: var(--text); }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .why-grid, .compare, .roles { grid-template-columns: 1fr; }
+    .output-row { grid-template-columns: 1fr; }
+    .output-consumer { text-align: left; }
+    .color-tokens { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HEADER -->
+<header>
+  <div class="repo-path">
+    <span class="org">PandaTheme</span>
+    <span class="slash">/</span>
+    <span class="name">panda-colors</span>
+  </div>
+  <h1>The <span class="accent">color foundation</span><br>for every Panda port</h1>
+  <p class="tagline">A single source of truth. Defined in OKLCH. Compiled to every format any port could need. Versioned and published to npm.</p>
+  <div class="header-badges">
+    <span class="badge badge-oklch">OKLCH source</span>
+    <span class="badge badge-ts">TypeScript</span>
+    <span class="badge badge-wcag">WCAG AA verified</span>
+    <span class="badge badge-pub">npm published</span>
+  </div>
+</header>
+
+<!-- WHY OKLCH -->
+<section>
+  <div class="section-meta">01 — Color Science</div>
+  <h2>Why OKLCH, not hex or HSL</h2>
+  <p class="h2-note">The original Panda colors were chosen by eye — which is fine and they look great. But defining them in OKLCH means the <em>math</em> matches the <em>perception.</em></p>
+
+  <div class="why-grid">
+    <div class="why-cell">
+      <span class="why-icon">👁</span>
+      <h4>Perceptual Lightness</h4>
+      <p>L in OKLCH maps to how bright your eye actually sees the color. Two colors with the same L feel equally bright — unlike HSL where yellow appears much lighter than blue at the same value.</p>
+    </div>
+    <div class="why-cell">
+      <span class="why-icon">🎯</span>
+      <h4>Consistent Variants</h4>
+      <p>Want Panda Midnight (darker) or Panda Bamboo (lighter)? Just adjust L uniformly across all tokens. Every variant is mathematically derived from the same source — no eyeballing.</p>
+    </div>
+    <div class="why-cell">
+      <span class="why-icon">♿</span>
+      <h4>WCAG AA Built-in</h4>
+      <p>Because L is perceptual, contrast ratios are predictable. You can guarantee 4.5:1 by setting L thresholds — not by testing each pair manually in a contrast checker.</p>
+    </div>
+    <div class="why-cell">
+      <span class="why-icon">🖥</span>
+      <h4>P3 Wide Gamut</h4>
+      <p>Modern Apple displays, Samsung AMOLED, and most 2024+ monitors support Display P3. OKLCH lets Panda use those extra 30% of colors where available. Hex can't express them at all.</p>
+    </div>
+    <div class="why-cell">
+      <span class="why-icon">📐</span>
+      <h4>Human Readable</h4>
+      <p><code style="font-family:monospace; font-size:11px">oklch(72% 0.22 355)</code> — you can read this. L=72 (mid-bright), C=0.22 (vivid), H=355 (hot pink). Compare to <code style="font-family:monospace; font-size:11px">#ff75b5</code> — which tells you nothing.</p>
+    </div>
+    <div class="why-cell">
+      <span class="why-icon">🔄</span>
+      <h4>Single Source, Many Outputs</h4>
+      <p>OKLCH is the source format. The generator compiles to hex, HSL, CSS vars, JSON tokens, and anything else a port needs. Change one value upstream, every port updates.</p>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="compare-block old">
+      <h4>❌ Before — Panda-Kit (now)</h4>
+      <pre>/* Just a JPG with hex swatches.
+No code. No system.
+Ports hardcode hex directly.
+Changing one color = edit 15 files. */
+
+#ff75b5  ← pink
+#6fc1ff  ← cyan
+#19f9d8  ← green
+/* ...defined nowhere, derived from nothing */</pre>
+    </div>
+    <div class="compare-block new">
+      <h4>✓ After — panda-colors</h4>
+      <pre><span style="color: var(--p-pink)">pink</span>: {
+  oklch: <span style="color:var(--p-yellow)">"oklch(72% 0.22 355)"</span>,
+  hex:   <span style="color:var(--p-yellow)">"#ff75b5"</span>,
+  role:  <span style="color:var(--p-yellow)">"keyword, tag, operator"</span>,
+  wcag:  <span style="color:var(--p-green)">✓ AA on bg</span>
+}
+<span style="color:var(--p-cyan)">// Generates ALL formats from this one object</span></pre>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR TOKENS PREVIEW -->
+<section>
+  <div class="section-meta">02 — The Tokens</div>
+  <h2>Revised Panda palette in OKLCH</h2>
+  <p class="h2-note">Same hues, mathematically normalized lightness and chroma. Each color has a name, semantic role, and OKLCH source value.</p>
+
+  <div class="palette-section">
+    <div class="palette-label">syntax colors — oklch source values</div>
+    <div class="color-tokens">
+      <div class="token">
+        <div class="token-swatch" style="background: #ff75b5" data-oklch="72% 0.22 355"></div>
+        <div class="token-info">
+          <div class="token-name">panda.pink</div>
+          <div class="token-hex">#ff75b5</div>
+          <div class="token-oklch-val">oklch(72% 0.22 355)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #6fc1ff" data-oklch="75% 0.13 220"></div>
+        <div class="token-info">
+          <div class="token-name">panda.cyan</div>
+          <div class="token-hex">#6fc1ff</div>
+          <div class="token-oklch-val">oklch(75% 0.13 220)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #19f9d8" data-oklch="88% 0.18 175"></div>
+        <div class="token-info">
+          <div class="token-name">panda.green</div>
+          <div class="token-hex">#19f9d8</div>
+          <div class="token-oklch-val">oklch(88% 0.18 175)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #ffb86c" data-oklch="80% 0.15 65"></div>
+        <div class="token-info">
+          <div class="token-name">panda.orange</div>
+          <div class="token-hex">#ffb86c</div>
+          <div class="token-oklch-val">oklch(80% 0.15 65)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #b084eb" data-oklch="68% 0.16 295"></div>
+        <div class="token-info">
+          <div class="token-name">panda.purple</div>
+          <div class="token-hex">#b084eb</div>
+          <div class="token-oklch-val">oklch(68% 0.16 295)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #ffe66d" data-oklch="91% 0.17 98"></div>
+        <div class="token-info">
+          <div class="token-name">panda.yellow</div>
+          <div class="token-hex">#ffe66d</div>
+          <div class="token-oklch-val">oklch(91% 0.17 98)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <div class="palette-label">ui colors — background, surface, border</div>
+    <div class="color-tokens">
+      <div class="token">
+        <div class="token-swatch" style="background: #1a1b26; border-bottom: 1px solid #2a2a3a"></div>
+        <div class="token-info">
+          <div class="token-name">panda.bg</div>
+          <div class="token-hex">#1a1b26</div>
+          <div class="token-oklch-val">oklch(15% 0.02 270)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #21222e; border-bottom: 1px solid #2a2a3a"></div>
+        <div class="token-info">
+          <div class="token-name">panda.surface</div>
+          <div class="token-hex">#21222e</div>
+          <div class="token-oklch-val">oklch(19% 0.02 268)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #e4e4f0; border-bottom: 1px solid #2a2a3a"></div>
+        <div class="token-info">
+          <div class="token-name">panda.fg</div>
+          <div class="token-hex">#e4e4f0</div>
+          <div class="token-oklch-val">oklch(92% 0.02 272)</div>
+        </div>
+      </div>
+      <div class="token">
+        <div class="token-swatch" style="background: #8888aa; border-bottom: 1px solid #2a2a3a"></div>
+        <div class="token-info">
+          <div class="token-name">panda.comment</div>
+          <div class="token-hex">#8888aa</div>
+          <div class="token-oklch-val">oklch(60% 0.04 275)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEMANTIC ROLES -->
+<section>
+  <div class="section-meta">03 — Semantics</div>
+  <h2>Color roles — what each token means</h2>
+  <p class="h2-note">This is what makes it a <em>system</em>, not just a palette. Each color has a defined semantic role. Ports map these roles to their own token format.</p>
+
+  <div class="roles">
+    <div class="role">
+      <div class="role-dot" style="background: #ff75b5"></div>
+      <div class="role-body">
+        <h4>pink — Keywords & Operators</h4>
+        <p>Reserved words, operators, CSS properties, JSX tags. The most visually prominent token. <code>const</code>, <code>return</code>, <code>import</code>, <code>=&gt;</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #6fc1ff"></div>
+      <div class="role-body">
+        <h4>cyan — Functions & Methods</h4>
+        <p>Function calls, method names, built-ins, class names. Second most common token. <code>console.log()</code>, <code>useState</code>, <code>Array</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #19f9d8"></div>
+      <div class="role-body">
+        <h4>green — Strings & Markup</h4>
+        <p>String literals, template literals, HTML attribute values, CSS values, Markdown links. <code>"hello"</code>, <code>`${name}`</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #ffb86c"></div>
+      <div class="role-body">
+        <h4>orange — Numbers & Constants</h4>
+        <p>Numeric literals, boolean values, null/undefined, CSS units, enum values. <code>42</code>, <code>true</code>, <code>null</code>, <code>16px</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #b084eb"></div>
+      <div class="role-body">
+        <h4>purple — Types & Interfaces</h4>
+        <p>TypeScript types, interfaces, generics, CSS selectors, HTML tags. <code>string</code>, <code>Interface</code>, <code>&lt;div&gt;</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #ffe66d"></div>
+      <div class="role-body">
+        <h4>yellow — Variables & Properties</h4>
+        <p>Variable declarations, object keys, CSS custom properties. <code>const name</code>, <code>obj.key</code>, <code>--color</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #8888aa"></div>
+      <div class="role-body">
+        <h4>comment — Comments & Docs</h4>
+        <p>Inline comments, block comments, JSDoc, docstrings. Should be subtle — readable but never distracting. <code>// note</code>, <code>/** */</code></p>
+      </div>
+    </div>
+    <div class="role">
+      <div class="role-dot" style="background: #e4e4f0"></div>
+      <div class="role-body">
+        <h4>fg — Default Text</h4>
+        <p>All uncolored text — punctuation, plain identifiers, prose. High contrast against bg. Must pass WCAG AA at minimum.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPO STRUCTURE -->
+<section>
+  <div class="section-meta">04 — Repository</div>
+  <h2>Repo structure — <code style="font-size:0.85em; color: var(--p-cyan)">PandaTheme/panda-colors</code></h2>
+  <p class="h2-note">TypeScript monorepo. Source in OKLCH. Build script compiles to all output formats. Published as <code>@pandatheme/colors</code> on npm.</p>
+
+  <div class="tree">
+    <div><span class="tree-dir">panda-colors/</span></div>
+    <div class="tree-indent"><span class="tree-dir">src/</span></div>
+    <div class="tree-indent2"><span class="tree-key">tokens.ts</span>     <span class="tree-comment">← OKLCH source of truth. Edit only this.</span></div>
+    <div class="tree-indent2"><span class="tree-key">semantic.ts</span>   <span class="tree-comment">← Maps tokens to roles (keyword, string, etc.)</span></div>
+    <div class="tree-indent2"><span class="tree-key">variants.ts</span>   <span class="tree-comment">← Midnight, Bamboo, Storm derived from L adjustments</span></div>
+    <div class="tree-indent2"><span class="tree-key">wcag.ts</span>       <span class="tree-comment">← Contrast ratio checker, WCAG AA enforcement</span></div>
+    <div class="tree-indent2"><span class="tree-key">convert.ts</span>    <span class="tree-comment">← OKLCH → hex, HSL, RGB, CSS var converters</span></div>
+    <div class="tree-indent"><span class="tree-dir">generators/</span></div>
+    <div class="tree-indent2"><span class="tree-file">css.ts</span>        <span class="tree-comment">← CSS custom properties file</span></div>
+    <div class="tree-indent2"><span class="tree-file">json.ts</span>       <span class="tree-comment">← Design token JSON (W3C DTCG format)</span></div>
+    <div class="tree-indent2"><span class="tree-file">vscode.ts</span>     <span class="tree-comment">← VS Code theme JSON</span></div>
+    <div class="tree-indent2"><span class="tree-file">zed.ts</span>        <span class="tree-comment">← Zed theme TOML/JSON</span></div>
+    <div class="tree-indent2"><span class="tree-file">cursor.ts</span>     <span class="tree-comment">← Cursor (same as vscode)</span></div>
+    <div class="tree-indent2"><span class="tree-file">terminal.ts</span>   <span class="tree-comment">← iTerm2, Alacritty, WezTerm, Ghostty</span></div>
+    <div class="tree-indent2"><span class="tree-file">figma.ts</span>      <span class="tree-comment">← Figma token JSON</span></div>
+    <div class="tree-indent"><span class="tree-dir">dist/</span>            <span class="tree-comment">← Generated. Never edit manually.</span></div>
+    <div class="tree-indent2"><span class="tree-file">panda.css</span></div>
+    <div class="tree-indent2"><span class="tree-file">tokens.json</span></div>
+    <div class="tree-indent2"><span class="tree-file">panda-dark.json</span>    <span class="tree-comment">← VS Code theme</span></div>
+    <div class="tree-indent2"><span class="tree-file">panda-light.json</span>   <span class="tree-comment">← Panda Bamboo (light variant)</span></div>
+    <div class="tree-indent2"><span class="tree-file">panda.itermcolors</span></div>
+    <div class="tree-indent2"><span class="tree-file">panda.toml</span>         <span class="tree-comment">← Alacritty/Zed</span></div>
+    <div class="tree-indent"><span class="tree-file">build.ts</span>          <span class="tree-comment">← Runs all generators. `pnpm build`</span></div>
+    <div class="tree-indent"><span class="tree-file">package.json</span>      <span class="tree-comment">← Published as @pandatheme/colors</span></div>
+    <div class="tree-indent"><span class="tree-file">SPEC.md</span>           <span class="tree-comment">← Human-readable color specification</span></div>
+  </div>
+</section>
+
+<!-- CODE SAMPLES -->
+<section>
+  <div class="section-meta">05 — Code</div>
+  <h2>What the source code looks like</h2>
+  <p class="h2-note">Three key files. Everything else is generated from these.</p>
+
+  <div class="code">
+    <div class="code-header">
+      <span class="code-filename">src/tokens.ts</span>
+      <span class="code-lang">TypeScript</span>
+    </div>
+    <div class="code-body"><span class="cmt">// THE single source of truth for all Panda colors.
+// All values defined in OKLCH. Hex is derived, not authored.</span>
+
+<span class="kw">export const</span> <span class="fn">pandaTokens</span> = {
+  <span class="cmt">// Syntax colors</span>
+  pink:    { <span class="prop">oklch</span>: <span class="str">'oklch(72% 0.22 355)'</span>, <span class="prop">role</span>: <span class="str">'keyword'</span>  },
+  cyan:    { <span class="prop">oklch</span>: <span class="str">'oklch(75% 0.13 220)'</span>, <span class="prop">role</span>: <span class="str">'function'</span> },
+  green:   { <span class="prop">oklch</span>: <span class="str">'oklch(88% 0.18 175)'</span>, <span class="prop">role</span>: <span class="str">'string'</span>   },
+  orange:  { <span class="prop">oklch</span>: <span class="str">'oklch(80% 0.15 65)'</span>,  <span class="prop">role</span>: <span class="str">'number'</span>   },
+  purple:  { <span class="prop">oklch</span>: <span class="str">'oklch(68% 0.16 295)'</span>, <span class="prop">role</span>: <span class="str">'type'</span>     },
+  yellow:  { <span class="prop">oklch</span>: <span class="str">'oklch(91% 0.17 98)'</span>,  <span class="prop">role</span>: <span class="str">'variable'</span> },
+  <span class="cmt">// UI colors</span>
+  bg:      { <span class="prop">oklch</span>: <span class="str">'oklch(15% 0.02 270)'</span>, <span class="prop">role</span>: <span class="str">'background'</span> },
+  surface: { <span class="prop">oklch</span>: <span class="str">'oklch(19% 0.02 268)'</span>, <span class="prop">role</span>: <span class="str">'surface'</span>    },
+  fg:      { <span class="prop">oklch</span>: <span class="str">'oklch(92% 0.02 272)'</span>, <span class="prop">role</span>: <span class="str">'foreground'</span> },
+  comment: { <span class="prop">oklch</span>: <span class="str">'oklch(60% 0.04 275)'</span>, <span class="prop">role</span>: <span class="str">'comment'</span>    },
+} <span class="kw">as const</span>
+
+<span class="kw">export type</span> <span class="type">TokenName</span> = <span class="kw">keyof typeof</span> <span class="fn">pandaTokens</span></div>
+  </div>
+
+  <div class="code">
+    <div class="code-header">
+      <span class="code-filename">src/variants.ts</span>
+      <span class="code-lang">TypeScript</span>
+    </div>
+    <div class="code-body"><span class="cmt">// Variants are derived by adjusting L in OKLCH.
+// Same H and C = same hue identity. Only brightness changes.
+// This is the OKLCH superpower — HSL can't do this reliably.</span>
+
+<span class="kw">import</span> { <span class="fn">pandaTokens</span> } <span class="kw">from</span> <span class="str">'./tokens'</span>
+<span class="kw">import</span> { <span class="fn">adjustL</span> } <span class="kw">from</span> <span class="str">'./convert'</span>
+
+<span class="kw">export const</span> variants = {
+  <span class="cmt">/** Default dark theme */</span>
+  dark:     pandaTokens,
+
+  <span class="cmt">/** Deeper, richer background — for Pro */</span>
+  midnight: <span class="fn">adjustL</span>(pandaTokens, { bg: <span class="num">-4</span>, surface: <span class="num">-3</span> }),
+
+  <span class="cmt">/** Softer, misted dark — for Pro */</span>
+  mist:     <span class="fn">adjustL</span>(pandaTokens, { bg: <span class="num">+3</span>, all: <span class="num">-5</span> }),
+
+  <span class="cmt">/** Light theme — Panda Bamboo */</span>
+  bamboo:   <span class="fn">adjustL</span>(pandaTokens, {
+    bg: <span class="num">97</span>, surface: <span class="num">93</span>, fg: <span class="num">15</span>,
+    <span class="cmt">// Syntax colors darken significantly for light bg contrast</span>
+    pink: <span class="num">-18</span>, cyan: <span class="num">-15</span>, green: <span class="num">-25</span>,
+  }),
+
+  <span class="cmt">/** High contrast — for accessibility / WCAG AAA */</span>
+  storm:    <span class="fn">adjustL</span>(pandaTokens, { all: <span class="num">+8</span>, bg: <span class="num">-3</span> }),
+}</div>
+  </div>
+
+  <div class="code">
+    <div class="code-header">
+      <span class="code-filename">generators/vscode.ts</span>
+      <span class="code-lang">TypeScript</span>
+    </div>
+    <div class="code-body"><span class="cmt">// Generates the VS Code theme JSON from panda tokens.
+// Every other port has its own generator — same token input, different output shape.</span>
+
+<span class="kw">import</span> { <span class="fn">toHex</span> } <span class="kw">from</span> <span class="str">'../src/convert'</span>
+<span class="kw">import</span> { <span class="type">PandaTokens</span> } <span class="kw">from</span> <span class="str">'../src/tokens'</span>
+
+<span class="kw">export function</span> <span class="fn">generateVSCode</span>(tokens: <span class="type">PandaTokens</span>) {
+  <span class="kw">const</span> c = <span class="fn">toHex</span>(tokens) <span class="cmt">// convert all oklch → hex</span>
+  <span class="kw">return</span> {
+    name: <span class="str">'Panda Syntax'</span>,
+    type: <span class="str">'dark'</span>,
+    colors: {
+      <span class="str">'editor.background'</span>:           c.bg,
+      <span class="str">'editor.foreground'</span>:           c.fg,
+      <span class="str">'editorLineNumber.foreground'</span>: c.comment,
+      <span class="cmt">// ... all UI tokens</span>
+    },
+    tokenColors: [
+      { scope: [<span class="str">'keyword'</span>, <span class="str">'storage'</span>],          settings: { foreground: c.pink   } },
+      { scope: [<span class="str">'entity.name.function'</span>],      settings: { foreground: c.cyan   } },
+      { scope: [<span class="str">'string'</span>, <span class="str">'string.quoted'</span>],    settings: { foreground: c.green  } },
+      { scope: [<span class="str">'constant.numeric'</span>],          settings: { foreground: c.orange } },
+      { scope: [<span class="str">'storage.type'</span>, <span class="str">'entity.name.type'</span>], settings: { foreground: c.purple } },
+      { scope: [<span class="str">'variable'</span>, <span class="str">'meta.object-literal.key'</span>], settings: { foreground: c.yellow } },
+      { scope: [<span class="str">'comment'</span>],                   settings: { foreground: c.comment, fontStyle: <span class="str">'italic'</span> } },
+    ]
+  }
+}</div>
+  </div>
+</section>
+
+<!-- OUTPUTS -->
+<section>
+  <div class="section-meta">06 — Outputs</div>
+  <h2>What <code style="font-size:0.85em; color:var(--p-cyan)">pnpm build</code> generates</h2>
+  <p class="h2-note">Run one command. Every format appears in <code>dist/</code>. Port maintainers consume these — they never touch OKLCH directly.</p>
+
+  <div class="outputs">
+    <div class="output-row">
+      <span class="output-format">tokens.json</span>
+      <span class="output-desc">W3C DTCG design token format. Used by Figma plugins, Style Dictionary, Tokens Studio.</span>
+      <span class="output-consumer">Figma / design tools</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda.css</span>
+      <span class="output-desc">CSS custom properties in both oklch() and hex fallback. Drop into any web project.</span>
+      <span class="output-consumer">Web / landing page</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda-dark.json</span>
+      <span class="output-desc">VS Code / Cursor theme JSON. Ready to publish to Marketplace directly.</span>
+      <span class="output-consumer">VS Code · Cursor</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda-bamboo.json</span>
+      <span class="output-desc">Light variant theme JSON for VS Code. WCAG AA contrast verified automatically.</span>
+      <span class="output-consumer">VS Code · Cursor</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda.toml</span>
+      <span class="output-desc">Alacritty + Zed compatible TOML theme format.</span>
+      <span class="output-consumer">Zed · Alacritty</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda.itermcolors</span>
+      <span class="output-desc">iTerm2 XML color scheme. Also usable for Ghostty with minor adaptation.</span>
+      <span class="output-consumer">iTerm2 · Ghostty</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">panda.wezterm.lua</span>
+      <span class="output-desc">WezTerm Lua color config table, ready to require().</span>
+      <span class="output-consumer">WezTerm</span>
+    </div>
+    <div class="output-row">
+      <span class="output-format">@pandatheme/colors</span>
+      <span class="output-desc">npm package. Ports import tokens programmatically: <code style="font-family:monospace;font-size:11px">import { panda } from '@pandatheme/colors'</code></span>
+      <span class="output-consumer">npm ecosystem</span>
+    </div>
+  </div>
+</section>
+
+<!-- HOW PORTS USE IT -->
+<section>
+  <div class="section-meta">07 — Port DX</div>
+  <h2>How a port maintainer uses this</h2>
+  <p class="h2-note">Port repos become thin adapters. They import tokens, map to their format. They never define a color themselves.</p>
+
+  <div class="code">
+    <div class="code-header">
+      <span class="code-filename">panda-syntax-zed / theme.ts</span>
+      <span class="code-lang">TypeScript — port example</span>
+    </div>
+    <div class="code-body"><span class="cmt">// A port is now just a thin mapping layer.
+// No hex values. No color decisions. Just format translation.</span>
+
+<span class="kw">import</span> { <span class="fn">panda</span>, <span class="fn">toHex</span> } <span class="kw">from</span> <span class="str">'@pandatheme/colors'</span>
+
+<span class="kw">const</span> c = <span class="fn">toHex</span>(panda.dark)
+
+<span class="kw">export const</span> zedTheme = {
+  name: <span class="str">"Panda Syntax"</span>,
+  appearance: <span class="str">"dark"</span>,
+  style: {
+    background:         c.bg,
+    foreground:         c.fg,
+    <span class="str">"syntax.keyword"</span>:  { color: c.pink,   <span class="prop">font_style</span>: <span class="str">"normal"</span> },
+    <span class="str">"syntax.function"</span>: { color: c.cyan   },
+    <span class="str">"syntax.string"</span>:   { color: c.green  },
+    <span class="str">"syntax.number"</span>:   { color: c.orange },
+    <span class="str">"syntax.type"</span>:     { color: c.purple },
+    <span class="str">"syntax.variable"</span>: { color: c.yellow },
+    <span class="str">"syntax.comment"</span>:  { color: c.comment, <span class="prop">font_style</span>: <span class="str">"italic"</span> },
+  }
+}
+
+<span class="cmt">// Panda Pro? Just swap the variant:</span>
+<span class="kw">const</span> cMidnight = <span class="fn">toHex</span>(panda.midnight)
+<span class="kw">export const</span> zedMidnight = { ...zedTheme, style: { ...zedTheme.style, background: cMidnight.bg } }</div>
+  </div>
+
+  <div class="callout">
+    <h4>Why this architecture is the right call</h4>
+    <p>
+      <strong>Single source of truth.</strong> You change one OKLCH value in <code style="font-family:monospace;font-size:12px">tokens.ts</code> and every port — VS Code, Cursor, Zed, iTerm2, WezTerm, Figma — updates on the next release. No hunting through JSON files.<br><br>
+      <strong>Variants for free.</strong> Panda Midnight, Bamboo (light), Storm (high contrast) are not separate design decisions — they're mathematical transformations of the same L axis. That's what OKLCH gives you that HSL cannot.<br><br>
+      <strong>The npm package is the moat.</strong> Once ports import <code style="font-family:monospace;font-size:12px">@pandatheme/colors</code>, the entire ecosystem depends on this repo. It becomes the canonical reference — exactly what Dracula's spec page gestures at but doesn't technically deliver.
+    </p>
+  </div>
+</section>
+
+</div>
+</body>
+</html>
